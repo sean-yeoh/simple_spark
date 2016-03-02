@@ -4,7 +4,7 @@ require 'json'
 
 module SimpleSpark
   class Client
-    def initialize(api_key: nil, api_host: nil, base_path: '/api/v1/', debug: false)
+    def initialize(api_key = nil, api_host = nil, base_path = '/api/v1/', debug = false)
       @api_key = api_key || ENV['SPARKPOST_API_KEY']
       @api_host = api_host || ENV['SPARKPOST_API_HOST'] || 'https://api.sparkpost.com'
       @base_path = base_path || '/api/v1/'
@@ -16,7 +16,7 @@ module SimpleSpark
       @debug = debug
     end
 
-    def call(method:, path:, data: {})
+    def call(method, path, data = {})
       fail InvalidConfiguration, 'Only GET, POST and DELETE are supported' unless [:get, :post, :delete].include?(method)
       params = {
         path: "#{@base_path}#{path}.json",

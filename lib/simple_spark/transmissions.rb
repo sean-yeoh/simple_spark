@@ -11,7 +11,7 @@ module SimpleSpark
     # Sends a message to SparkPost
     # See: https://developers.sparkpost.com/api/#/reference/transmissions/create/create-a-transmission
     def create(data)
-      @client.call(method: :post, path: 'transmissions', data: data)
+      @client.call(:post, 'transmissions', data)
     end
 
     alias_method :send_message, :create

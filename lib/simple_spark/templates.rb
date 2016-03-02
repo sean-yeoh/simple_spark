@@ -16,7 +16,7 @@ module SimpleSpark
     #   description: Template description
     # See: https://developers.sparkpost.com/api/#/reference/templates/create-and-list/list-all-templates
     def list
-      @client.call(method: :post, path: 'templates')
+      @client.call(:post, 'templates')
     end
   end
 end
