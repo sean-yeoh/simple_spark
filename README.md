@@ -1,4 +1,4 @@
-# Sparkpost::Snap
+# SimplePost
 
 TODO: Write a gem description
 
