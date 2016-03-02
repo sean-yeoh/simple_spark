@@ -13,25 +13,28 @@ module SimpleSpark
       fail Exceptions::InvalidConfiguration, 'You must provide a SparkPost API host' unless @api_host # this should never occur unless the default above is changed
       fail Exceptions::InvalidConfiguration, 'You must provide a SparkPost base path' unless @base_path # this should never occur unless the default above is changed
 
-      @session = Excon.new(@api_host)
       @debug = debug
+      @session = Excon.new(@api_host, debug: @debug)
     end
 
     def call(method, path, data = {})
       fail Exceptions::InvalidConfiguration, 'Only GET, POST and DELETE are supported' unless [:get, :post, :delete].include?(method)
       params = {
-        path: "#{@base_path}#{path}.json",
+        path: "#{@base_path}#{path}",
         headers: default_headers,
         body: data.to_json
       }
       response = @session.send(method.to_s, params)
+
+      # TODO deal with status here, 422, 404, and throttled
+
       process_response(response)
     end
 
     def process_response(response)
       response = JSON.parse(response.body)
       if response['errors']
-        fail SparkPost::DeliveryException, response['errors']
+        fail Exceptions::DeliveryException, response['errors']
       else
         response['results']
       end
