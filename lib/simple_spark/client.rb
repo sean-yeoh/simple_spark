@@ -18,7 +18,7 @@ module SimpleSpark
     end
 
     def call(method, path, data = {})
-      fail InvalidConfiguration, 'Only GET, POST and DELETE are supported' unless [:get, :post, :delete].include?(method)
+      fail Exceptions::InvalidConfiguration, 'Only GET, POST and DELETE are supported' unless [:get, :post, :delete].include?(method)
       params = {
         path: "#{@base_path}#{path}.json",
         headers: default_headers,

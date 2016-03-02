@@ -11,6 +11,8 @@ describe SimpleSpark::Client do
       specify { expect(client.instance_variable_get(:@api_key)).to eq('mykey') }
       specify { expect(client.instance_variable_get(:@api_host)).to eq('https://api.sparkpost.com') }
       specify { expect(client.instance_variable_get(:@base_path)).to eq('/api/v1/') }
+      specify { expect(client.instance_variable_get(:@session).class).to eq(Excon::Connection) }
+      specify { expect(client.instance_variable_get(:@debug)).to eq(false) }
     end
 
     it 'will use the API key from the ENV var' do
@@ -27,6 +29,10 @@ describe SimpleSpark::Client do
 
     it 'will use the base_path provided' do
       expect(SimpleSpark::Client.new('mykey', nil, 'base').instance_variable_get(:@base_path)).to eq('base')
+    end
+
+    it 'will use the debug option provided' do
+      expect(SimpleSpark::Client.new('mykey', nil, nil, true).instance_variable_get(:@debug)).to eq(true)
     end
   end
 end
