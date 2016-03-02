@@ -1,5 +1,7 @@
 # SimplePost
 
+[![Build Status](https://travis-ci.org/leadmachineapp/simple_spark.png?branch=master)](https://travis-ci.org/leadmachineapp/simple_spark)
+
 TODO: Write a gem description
 
 ## Installation
