@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ### Why?
 
-The official gem is somewhat lackign in functionality, though with the demise of Mandrill it seems SparkPost may have decided to restart development on it.
+The official gem is somewhat lacking in functionality, though with the demise of Mandrill it seems SparkPost may have decided to restart development on it.
 
 But, not being in a mood to wait, and as we would have to write wrappers around all the functions we would need anyway, it seemed much easier to write the wrapper as a gem and allow others to use it too.
 
