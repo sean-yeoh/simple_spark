@@ -1,0 +1,5 @@
+require 'simple_spark/version'
+require 'simple_spark/client'
+require 'simple_spark/exceptions'
+require 'simple_spark/transmissions'
+require 'simple_spark/templates'
