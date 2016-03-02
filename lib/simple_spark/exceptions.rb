@@ -10,7 +10,7 @@ module SimpleSpark
     class Error < StandardError
       attr_reader :object
 
-      def initialize(object)
+      def initialize(object = nil)
         @object = object
       end
     end
