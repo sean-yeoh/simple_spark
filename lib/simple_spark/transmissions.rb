@@ -4,6 +4,8 @@ module SimpleSpark
   class Transmissions
     attr_accessor :client
 
+    alias_method :send_message, :create
+
     def initialize(client)
       @client = client
     end
