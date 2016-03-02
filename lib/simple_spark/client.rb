@@ -10,9 +10,10 @@ module SimpleSpark
       @base_path = base_path || '/api/v1/'
 
       fail Exceptions::InvalidConfiguration, 'You must provide a SparkPost API key' unless @api_key
-      fail Exceptions::InvalidConfiguration, 'You must provide a SparkPost API host' unless @api_host
+      fail Exceptions::InvalidConfiguration, 'You must provide a SparkPost API host' unless @api_host # this should never occur unless the default above is changed
+      fail Exceptions::InvalidConfiguration, 'You must provide a SparkPost base path' unless @base_path # this should never occur unless the default above is changed
 
-      @session = Excon.new @api_host
+      @session = Excon.new(@api_host)
       @debug = debug
     end
 
