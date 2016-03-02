@@ -4,8 +4,6 @@ module SimpleSpark
   class Transmissions
     attr_accessor :client
 
-    alias_method :send_message, :create
-
     def initialize(client)
       @client = client
     end
@@ -15,5 +13,7 @@ module SimpleSpark
     def create(data)
       @client.call(method: :post, path: 'transmissions', data: data)
     end
+
+    alias_method :send_message, :create
   end
 end

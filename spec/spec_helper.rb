@@ -1,2 +1,2 @@
 require 'pry'
-require 'SparkPost'
+require 'simple_spark'
