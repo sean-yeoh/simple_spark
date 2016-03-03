@@ -21,12 +21,6 @@ describe SimpleSpark::Client do
       end
     end
 
-    it 'will use the API host from the ENV var' do
-      with_modified_env SPARKPOST_API_HOST: 'http://www.myhost.com' do
-        expect(SimpleSpark::Client.new('mykey').instance_variable_get(:@api_host)).to eq('http://www.myhost.com')
-      end
-    end
-
     it 'will use the base_path provided' do
       expect(SimpleSpark::Client.new('mykey', nil, 'base').instance_variable_get(:@base_path)).to eq('base')
     end
