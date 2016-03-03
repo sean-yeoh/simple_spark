@@ -35,6 +35,35 @@ It's day one, and it's a day one project.
 
 ## Endpoints
 
+### Inbound Domains
+
+    require 'simple_spark'
+    client = SimpleSpark::Client.new('your_api_token')
+
+#### List
+
+List all Inbound Domains
+
+    client.inbound_domains.list
+
+#### Create
+
+Create a new Inbound Domain
+
+    client.inbound_domains.create('mail.mydomain.com')
+
+#### Retrieve
+
+Retrieves an Inbound Template by its domain name
+
+    client.inbound_domains.retrieve('mail.mydomain.com')
+
+#### Delete
+
+Deletes an Inbound Domain permanently
+
+    client.inbound_domains.delete('mail.mydomain.com')
+
 ### Templates
 
     require 'simple_spark'

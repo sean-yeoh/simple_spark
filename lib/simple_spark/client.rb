@@ -17,11 +17,14 @@ module SimpleSpark
       @session = Excon.new(@api_host, debug: @debug)
     end
 
-    def call(method, path, values = {})
+    def call(method, path, body_values = {}, query_params = {})
       fail Exceptions::InvalidConfiguration.new({ method: method }), 'Only GET, POST, PUT and DELETE are supported' unless [:get, :post, :put, :delete].include?(method)
 
-      params = { path: "#{@base_path}#{path}", headers: default_headers }
-      params[:body] = values.to_json unless values.empty?
+      path = "#{@base_path}#{path}"
+      # path += '?' + URI.encode_www_form(query_params) if query_params.any?
+      params = { path: path, headers: default_headers }
+      params[:body] = body_values.to_json unless body_values.empty?
+      params[:query] = query_params unless query_params.empty?
       response = @session.send(method.to_s, params)
 
       process_response(response)
@@ -34,8 +37,14 @@ module SimpleSpark
       if response_body['errors']
         Exceptions::Error.fail_with_exception_for_status(response.status, response_body['errors'])
       else
-        response_body['results']
+        response_body['results'] ? response_body['results'] : true
       end
+    end
+
+    def url_encode(s)
+      s.to_s.dup.force_encoding("ASCII-8BIT").gsub(/[^a-zA-Z0-9_\-.]/) {
+        sprintf("%%%02X", $&.unpack("C")[0])
+      }
     end
 
     def default_headers
@@ -44,6 +53,10 @@ module SimpleSpark
         'Content-Type' => 'application/json',
         'Authorization' => @api_key
       }
+    end
+
+    def inbound_domains
+      InboundDomains.new(self)
     end
 
     def templates

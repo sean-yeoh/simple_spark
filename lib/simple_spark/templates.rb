@@ -40,8 +40,8 @@ module SimpleSpark
     # https://developers.sparkpost.com/api/#/reference/templates/retrieve/retrieve-a-template
     def retrieve(id, draft = nil)
       path = "templates/#{id}"
-      path += "?draft=#{draft}" unless draft.nil?
-      @client.call(:get, path)
+      query_params = draft.nil? ? {} : { draft: draft }
+      @client.call(:get, path, {}, query_params)
     end
 
     # id: Unique Template ID to update
@@ -51,8 +51,7 @@ module SimpleSpark
     #
     # https://developers.sparkpost.com/api/#/reference/templates/update/update-a-template
     def update(id, values, update_published = false)
-      path = "templates/#{id}?update_published=#{update_published}"
-      @client.call(:put, path, values)
+      @client.call(:put, 'templates/#{id}', values, { update_published: update_published })
     end
 
     # id: Unique Template ID to preview
@@ -64,9 +63,8 @@ module SimpleSpark
     #
     # https://developers.sparkpost.com/api/#/reference/templates/update/preview-a-template
     def preview(id, values, draft = nil)
-      path = "templates/#{id}/preview"
-      path += "?draft=#{draft}" unless draft.nil?
-      @client.call(:post, path, values)
+      query_params = draft.nil? ? {} : { draft: draft }
+      @client.call(:post, 'templates/#{id}/preview', values, query_params)
     end
 
     # id: Unique Template ID to delete
