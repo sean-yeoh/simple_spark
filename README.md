@@ -57,6 +57,52 @@ Setting debug to true will cause [Excon](https://github.com/excon/excon) to outp
 
     client = SimpleSpark::Client.new(nil, nil, nil, true)
 
+### Sending Domains
+
+#### List
+
+List all Sending Domains
+
+    client.sending_domains.list
+
+#### Create
+
+Create a new Sending Domain
+
+    client.sending_domains.create('mail.mydomain.com')
+
+#### Retrieve
+
+Retrieves a Sending Template by its domain name
+
+    client.sending_domains.retrieve('mail.mydomain.com')
+
+#### Update
+
+Updates a Sending Domain with new values
+
+    properties = { "tracking_domain" => "new.tracking.domain" }
+    client.sending_domains.update('mail.mydomain.com', properties)
+
+#### Verify
+
+Forces verification of a Sending Domain.
+
+Including the fields "dkim_verify" and/or "spf_verify" in the request initiates a check against the associated DNS record
+type for the specified sending domain.Including the fields "postmaster_at_verify" and/or "abuse_at_verify" in the request
+results in an email sent to the specified sending domain's postmaster@ and/or abuse@ mailbox where a verification link can
+be clicked. Including the fields "postmaster_at_token" and/or "abuse_at_token" in the request initiates a check of the provided
+token(s) against the stored token(s) for the specified sending domain.
+
+    properties = { "dkim_verify": true, "spf_verify": true }
+    client.sending_domains.retrieve('mail.mydomain.com', properties)
+
+#### Delete
+
+Deletes a Sending Domain permanently
+
+    client.sending_domains.delete('mail.mydomain.com')
+
 ### Inbound Domains
 
 #### List
@@ -107,7 +153,7 @@ Retrieves a Template by its ID
 
 #### Update
 
-Udpates a Template with new values
+Updates a Template with new values
 
     properties = { "name" => "Sorry, the Winter Sale!" }}
     update_published = false
