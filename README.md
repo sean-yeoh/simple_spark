@@ -55,7 +55,7 @@ You can also override the other options if you need to in advanced scenarios, th
 
 Setting debug to true will cause [Excon](https://github.com/excon/excon) to output full debug information to the log, to default the other values and just set debug, send nil values
 
-    client = SimpleSpark::Client.new(nil, nil, nil, debug = false)
+    client = SimpleSpark::Client.new(nil, nil, nil, true)
 
 ### Inbound Domains
 
