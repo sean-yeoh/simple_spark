@@ -1,6 +1,6 @@
 module SimpleSpark
   module Endpoints
-    # Provides access to the /templates endpoint
+    # Provides access to the /inbound-domains endpoint
     # See: https://developers.sparkpost.com/api/#/reference/templates
     class InboundDomains
       attr_accessor :client
@@ -8,9 +8,6 @@ module SimpleSpark
       def initialize(client)
         @client = client
       end
-      # Lists the most recent version of each template in your account.
-      # @return [Array] a list of Template hash objects
-      # @note See: https://developers.sparkpost.com/api/#/reference/templates/create-and-list/list-all-templates
 
       # Lists your inbound domains
       # @return [Array] a list of Inbound Domain hash objects
