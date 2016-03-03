@@ -1,6 +1,10 @@
 module SimpleSpark
   # Provides access to the /templates endpoint
-  # See: https://developers.sparkpost.com/api/#/reference/templates
+  # @note See: https://developers.sparkpost.com/api/#/reference/templates
+  # @note Sample Template
+  #   {"id"=>"102293692714480130", "name"=>"Summer Sale!", "description"=>"", "published"=>false, "options"=>{},
+  #    "last_update_time"=>"2016-03-02T22:49:23+00:00",
+  #    "content"=>{"from"=>"marketing@neekme.com", "subject"=>"Summer deals", "html"=>"<b>Check out these deals!</b>"}}
   class Templates
     attr_accessor :client
 
@@ -9,70 +13,64 @@ module SimpleSpark
     end
 
     # Lists the most recent version of each template in your account.
-    # Each template object in the list will have the following fields:
-    #   id: Unique template ID
-    #   name: Template name
-    #   published: Published state of the template (true = published, false = draft)
-    #   description: Template description
-    # See: https://developers.sparkpost.com/api/#/reference/templates/create-and-list/list-all-templates
+    # @return [Array] a list of Template hash objects
+    # @note See: https://developers.sparkpost.com/api/#/reference/templates/create-and-list/list-all-templates
     def list
       @client.call(:get, 'templates')
     end
 
     # Create a template by providing values for the template object.
-    # At a minimum, the "name" and "content" fields are required, where content must contain
-    # the "from", "subject", and at least one of "html" or "text" fields.
-    # https://developers.sparkpost.com/api/#/reference/templates/create-a-template
+    # @param values [Hash] containing the properties. At a minimum, the "name" and "content"
+    #   fields are required, where content must contain the "from", "subject", and at
+    #   least one of "html" or "text" fields.
+    # @return [boolean] true if success
+    # @note See: https://developers.sparkpost.com/api/#/reference/templates/create-a-template
     def create(values)
       @client.call(:post, 'templates', values)
     end
 
-    # id: Unique Template ID to retrieve
-    # draft: If true, returns the most recent draft template.
-    #        If false, returns the most recent published template.
-    #        If not provided, returns the most recent template version regardless of draft or published.
-    #
-    # Sample Template
-    # {"id"=>"102293692714480130", "name"=>"Summer Sale!", "description"=>"", "published"=>false, "options"=>{},
-    #  "last_update_time"=>"2016-03-02T22:49:23+00:00",
-    #  "content"=>{"from"=>"marketing@neekme.com", "subject"=>"Summer deals", "html"=>"<b>Check out these deals!</b>"}}
-    #
-    # https://developers.sparkpost.com/api/#/reference/templates/retrieve/retrieve-a-template
+    # Retrieve a Template by its ID
+    # @param id [String] the Unique Template ID to retrieve
+    # @param draft [boolean] If true, returns the most recent draft template.
+    #   If false, returns the most recent published template.
+    #   If not provided, returns the most recent template version regardless of draft or published.
+    # @return [Hash] the Template object
+    # @note https://developers.sparkpost.com/api/#/reference/templates/retrieve/retrieve-a-template
     def retrieve(id, draft = nil)
       path = "templates/#{id}"
       query_params = draft.nil? ? {} : { draft: draft }
       @client.call(:get, path, {}, query_params)
     end
 
-    # id: Unique Template ID to update
-    # values: Hash of the values to update the template with
-    # update_published: If true, directly overwrite the existing published template. If false, create a new draft.
-    #                   If this template isn't yet published, setting to 'true' will result in a NotFound error
+    # Update a Template by its ID
+    # @param id [String] the Unique Template ID to update
+    # @param values [Hash] the values to update the template with
+    # @param update_published [boolean] If true, directly overwrite the existing published template. If false, create a new draft.
+    #   If this template isn't yet published, setting to 'true' will result in a NotFound error
     #
-    # https://developers.sparkpost.com/api/#/reference/templates/update/update-a-template
+    # @note See: https://developers.sparkpost.com/api/#/reference/templates/update/update-a-template
     def update(id, values, update_published = false)
       @client.call(:put, 'templates/#{id}', values, { update_published: update_published })
     end
 
-    # id: Unique Template ID to preview
-    # values: substitution data to preview with
-    #         { "substitution_data" => { "name" => "Natalie", "age" => 35, "member" => true }
-    # draft: If true, returns the most recent draft template.
-    #        If false, returns the most recent published template.
-    #        If not provided, returns the most recent template version regardless of draft or published.
+    # Preview a Template by its ID
+    # @param id [String] the Unique Template ID to preview
+    # @param substitutions [Hash] the values to update the template with. Must contain a key 'substitution_data'
+    #    { "substitution_data" => { "name" => "Natalie", "age" => 35, "member" => true }
+    # @param draft [boolean] If true, returns the most recent draft template.
+    #   If false, returns the most recent published template.
+    #   If not provided, returns the most recent template version regardless of draft or published.
     #
-    # https://developers.sparkpost.com/api/#/reference/templates/update/preview-a-template
-    def preview(id, values, draft = nil)
+    # @note See: https://developers.sparkpost.com/api/#/reference/templates/update/preview-a-template
+    def preview(id, substitutions, draft = nil)
       query_params = draft.nil? ? {} : { draft: draft }
-      @client.call(:post, 'templates/#{id}/preview', values, query_params)
+      @client.call(:post, 'templates/#{id}/preview', substitutions, query_params)
     end
 
-    # id: Unique Template ID to delete
-    # values: Hash of the values to update the template with
-    # update_published: If true, directly overwrite the existing published template. If false, create a new draft.
-    #                   If this template isn't yet published, setting to 'true' will result in a NotFound error
+    # Delete a Template by its ID
+    # @param id [String] the Unique Template ID to delete
     #
-    # https://developers.sparkpost.com/api/#/reference/templates/update/update-a-template
+    # @note See: https://developers.sparkpost.com/api/#/reference/templates/update/update-a-template
     def delete(id)
       @client.call(:delete, "templates/#{id}")
     end
