@@ -56,15 +56,15 @@ module SimpleSpark
     end
 
     def inbound_domains
-      InboundDomains.new(self)
+      Endpoints::InboundDomains.new(self)
     end
 
     def templates
-      Templates.new(self)
+      Endpoints::Templates.new(self)
     end
 
     def transmissions
-      Transmissions.new(self)
+      Endpoints::Transmissions.new(self)
     end
   end
 end
