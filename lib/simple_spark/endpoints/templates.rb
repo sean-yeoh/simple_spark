@@ -51,7 +51,7 @@ module SimpleSpark
       #
       # @note See: https://developers.sparkpost.com/api/#/reference/templates/update/update-a-template
       def update(id, values, update_published = false)
-        @client.call(:put, 'templates/#{id}', values, { update_published: update_published })
+        @client.call(:put, "templates/#{id}", values,  update_published: update_published)
       end
 
       # Preview a Template by its ID
@@ -65,7 +65,7 @@ module SimpleSpark
       # @note See: https://developers.sparkpost.com/api/#/reference/templates/update/preview-a-template
       def preview(id, substitutions, draft = nil)
         query_params = draft.nil? ? {} : { draft: draft }
-        @client.call(:post, 'templates/#{id}/preview', substitutions, query_params)
+        @client.call(:post, "templates/#{id}/preview", substitutions, query_params)
       end
 
       # Delete a Template by its ID
