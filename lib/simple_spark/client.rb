@@ -41,10 +41,9 @@ module SimpleSpark
       end
     end
 
+    # Copied from http://apidock.com/ruby/ERB/Util/url_encode
     def url_encode(s)
-      s.to_s.dup.force_encoding("ASCII-8BIT").gsub(/[^a-zA-Z0-9_\-.]/) {
-        sprintf("%%%02X", $&.unpack("C")[0])
-      }
+      s.to_s.dup.force_encoding("ASCII-8BIT").gsub(/[^a-zA-Z0-9_\-.]/) { sprintf("%%%02X", $&.unpack("C")[0]) }
     end
 
     def default_headers
@@ -57,6 +56,10 @@ module SimpleSpark
 
     def inbound_domains
       Endpoints::InboundDomains.new(self)
+    end
+
+    def sending_domains
+      Endpoints::SendingDomains.new(self)
     end
 
     def templates
