@@ -37,20 +37,19 @@ It's day one, and it's a day one project.
 
 ### Templates
 
+    require 'simple_spark'
+    client = SimpleSpark::Client.new('your_api_token')
+
 #### List
 
 List all templates
 
-    require 'simple_spark'
-    client = SimpleSpark::Client.new('your_api_token')
     client.templates.list
 
 #### Create
 
 Create a new Template
 
-    require 'simple_spark'
-    client = SimpleSpark::Client.new('your_api_token')
     properties = {  "name" => "Summer Sale!", "content"=> { "from" => "marketing@yourdomain.com",   "subject"=> "Summer deals",  "html"=> "<b>Check out these deals!</b>"}}
     client.templates.create(properties)
 
@@ -58,16 +57,13 @@ Create a new Template
 
 Retrieves a Template by its ID
 
-    require 'simple_spark'
-    client = SimpleSpark::Client.new('your_api_token')
-    client.templates.retrieve(yourtemplateid, nil)
+    draft = nil
+    client.templates.retrieve(yourtemplateid, draft)
 
 #### Update
 
 Udpates a Template with new values
 
-    require 'simple_spark'
-    client = SimpleSpark::Client.new('your_api_token')
     properties = { "name" => "Sorry, the Winter Sale!" }}
     update_published = false
     client.templates.update(yourtemplateid, properties, update_published)
@@ -76,17 +72,14 @@ Udpates a Template with new values
 
 Merges the template with the Substitution data and returns the result
 
-    require 'simple_spark'
-    client = SimpleSpark::Client.new('your_api_token')
     properties = { substitution_data: { name: 'Mr test User' } }
-    client.templates.preview(yourtemplateid, properties, nil)
+    draft = nil
+    client.templates.preview(yourtemplateid, properties, draft)
 
 #### Delete
 
 Deletes a template permanently
 
-    require 'simple_spark'
-    client = SimpleSpark::Client.new('your_api_token')
     client.templates.delete(yourtemplateid)
 
 
