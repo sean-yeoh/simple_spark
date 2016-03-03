@@ -2,6 +2,10 @@ module SimpleSpark
   module Endpoints
     # Provides access to the /templates endpoint
     # @note See: https://developers.sparkpost.com/api/#/reference/templates
+    # @note Sample Template
+    #   { "id"=>"102293692714480130", "name"=>"Summer Sale!", "description"=>"", "published"=>false, "options"=>{},
+    #    "last_update_time"=>"2016-03-02T22:49:23+00:00",
+    #    "content"=>{"from"=>"marketing@neekme.com", "subject"=>"Summer deals", "html"=>"<b>Check out these deals!</b>"} }
     class Templates
       attr_accessor :client
 
