@@ -17,28 +17,24 @@ module SimpleSpark
       @session = Excon.new(@api_host, debug: @debug)
     end
 
-    def call(method, path, data = {})
-      fail Exceptions::InvalidConfiguration.new({ method: method }), 'Only GET, POST and DELETE are supported' unless [:get, :post, :delete].include?(method)
-      params = {
-        path: "#{@base_path}#{path}",
-        headers: default_headers,
-        body: data.to_json
-      }
+    def call(method, path, values = {})
+      fail Exceptions::InvalidConfiguration.new({ method: method }), 'Only GET, POST, PUT and DELETE are supported' unless [:get, :post, :put, :delete].include?(method)
+
+      params = { path: "#{@base_path}#{path}", headers: default_headers }
+      params[:body] = values.to_json unless values.empty?
       response = @session.send(method.to_s, params)
-
-      # TODO deal with status here, 422, 404, and throttled
-
-      # Need to deal with 204 for some calls too, success, no content in response
 
       process_response(response)
     end
 
     def process_response(response)
-      response = JSON.parse(response.body)
-      if response['errors']
-        fail Exceptions::DeliveryException, response['errors']
+      return true if response.status == 204
+
+      response_body = JSON.parse(response.body)
+      if response_body['errors']
+        Exceptions::Error.fail_with_exception_for_status(response.status, response_body['errors'])
       else
-        response['results']
+        response_body['results']
       end
     end
 
