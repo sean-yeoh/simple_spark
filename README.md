@@ -35,10 +35,29 @@ It's day one, and it's a day one project.
 
 ## Endpoints
 
-### Inbound Domains
+### Creating a Client
+
+First you need to ensure you are requiring the library
 
     require 'simple_spark'
-    client = SimpleSpark::Client.new('your_api_token')
+
+THe simplest version of the client is to just provide your [API key from SparkPost](https://app.sparkpost.com/account/credentials)
+
+    client = SimpleSpark::Client.new('your_api_key')
+
+You can also use ENV vars to configure the key, setting ENV['SPARKPOST_API_KEY'] will allow you to just use
+
+    client = SimpleSpark::Client.new
+
+You can also override the other options if you need to in advanced scenarios, the full signature is
+
+    client = SimpleSpark::Client.new('your_api_key', api_host = 'https://api.sparkpost.com', base_path = '/api/v1/' , debug = false)
+
+Setting debug to true will cause [Excon](https://github.com/excon/excon) to output full debug information to the log, to default the other values and just set debug, send nil values
+
+    client = SimpleSpark::Client.new(nil, nil, nil, debug = false)
+
+### Inbound Domains
 
 #### List
 
@@ -65,9 +84,6 @@ Deletes an Inbound Domain permanently
     client.inbound_domains.delete('mail.mydomain.com')
 
 ### Templates
-
-    require 'simple_spark'
-    client = SimpleSpark::Client.new('your_api_token')
 
 #### List
 
