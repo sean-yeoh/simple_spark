@@ -57,6 +57,36 @@ Setting debug to true will cause [Excon](https://github.com/excon/excon) to outp
 
     client = SimpleSpark::Client.new(nil, nil, nil, true)
 
+### Transmissions
+
+#### List
+
+List all Transmissions
+
+When messages are sent the Transmission will be deleted, so this will only return transmissions that are about to be sent or are scheduled for the future
+
+    client.transmissions.list
+
+#### Create
+
+Create a new Transmission
+
+    properties = { "options" => {"open_tracking"=>true, "click_tracking"=>true},
+     "campaign_id" => "christmas_campaign",
+     "return_path" => "bounces-christmas-campaign@flintstone.com",
+     "metadata" => {"user_type" => "students"},
+     "substitution_data" => {"sender" => "Big Store Team"},
+     "recipients" => [{"address" => {"email" => "recipient@gmail.com", "name" => "Wilma Flintstone"}, "tags" => ["greeting", "prehistoric", "fred", "flintstone"], "metadata" => {"place" => "Bedrock"}, "substitution_data" => {"customer_type" => "Platinum"}}],
+     "content" =>
+      {"from" => {"name" => "Fred Flintstone", "email" => "fred@flintstone.com"},
+       "subject" => "Big Christmas savings!",
+       "reply_to" => "Christmas Sales <sales@flintstone.com>",
+       "headers" => {"X-Customer-Campaign-ID" => "christmas_campaign"},
+       "text" => "Hi {{address.name}} \nSave big this Christmas in your area {{place}}! \nClick http://www.mysite.com and get huge discount\n Hurry, this offer is only to {{user_type}}\n {{sender}}",
+       "html" => "<p>Hi {{address.name}} \nSave big this Christmas in your area {{place}}! \nClick http://www.mysite.com and get huge discount\n</p><p>Hurry, this offer is only to {{user_type}}\n</p><p>{{sender}}</p>"}}
+
+    client.transmissions.create(properties)
+
 ### Sending Domains
 
 #### List
