@@ -5,7 +5,7 @@ module SimpleSpark
     #   { "domain": "example1.com", "tracking_domain": "click.example1.com",
     #   "status": { "ownership_verified": true, "spf_status": "valid", "abuse_at_status": "valid",
     #   "abuse_at_status": "valid", "dkim_status": "valid", "compliance_status": "valid", "postmaster_at_status": "valid" } }
-    # @note See: https://developers.sparkpost.com/api/#/reference/templates
+    # @note See: https://developers.sparkpost.com/api/#/reference/sending-domains
     class SendingDomains
       attr_accessor :client
 
@@ -59,7 +59,7 @@ module SimpleSpark
       # @note See: https://developers.sparkpost.com/api/#/reference/sending-domains/verify/verify-a-sending-domain
       def verify(domain_name, values)
         domain_name = @client.url_encode(domain_name)
-        @client.call(:put, "sending-domains/#{domain_name}", values)
+        @client.call(:post, "sending-domains/#{domain_name}", values)
       end
 
       # Delete a sending domain

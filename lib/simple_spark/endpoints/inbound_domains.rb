@@ -1,7 +1,7 @@
 module SimpleSpark
   module Endpoints
     # Provides access to the /inbound-domains endpoint
-    # See: https://developers.sparkpost.com/api/#/reference/templates
+    # See: https://developers.sparkpost.com/api/#/reference/inbound-domains
     class InboundDomains
       attr_accessor :client
 
