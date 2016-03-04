@@ -41,7 +41,7 @@ First you need to ensure you are requiring the library
 
     require 'simple_spark'
 
-THe simplest version of the client is to just provide your [API key from SparkPost](https://app.sparkpost.com/account/credentials)
+The simplest version of the client is to just provide your [API key from SparkPost](https://app.sparkpost.com/account/credentials)
 
     client = SimpleSpark::Client.new('your_api_key')
 
