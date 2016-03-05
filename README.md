@@ -72,24 +72,25 @@ When messages are sent the Transmission will be deleted, so this will only retur
 Create a new Transmission
 
     properties = {
-      "options" => { "open_tracking" => true, "click_tracking"=>true},
-      "campaign_id" => "christmas_campaign",
-      "metadata" => { "user_type" => "students" },
-      "substitution_data" => { "sender" => "Big Store Team" },
-      "recipients" => [
-       { "address" => { "email" => "recipient@gmail.com", "name" => "Wilma Flintstone" },
-         "tags" => [ "greeting", "prehistoric", "fred", "flintstone" ],
-         "metadata" => {"place" => "Bedrock"},
-         "substitution_data" => { "customer_type" => "Platinum" } }
+      options: { open_tracking: true, click_tracking: true },
+      campaign_id: 'christmas_campaign',
+      return_path: 'bounces-christmas-campaign@sp.neekme.com',
+      metadata: {user_type: 'students'},
+      substitution_data: { sender: 'Big Store Team' },
+      recipients:  [
+        { address: { email: 'yourcustomer@theirdomain.com', name: 'Your Customer' },
+          tags: ['greeting', 'sales'],
+          metadata: { place: 'Earth' }, substitution_data: { address: '123 Their Road' } }
       ],
-     "content" =>
-       { "from" => { "name" => "Fred Flintstone", "email" => "fred@flintstone.com" },
-         "subject" => "Big Christmas savings!",
-         "reply_to" => "Christmas Sales <sales@flintstone.com>",
-         "headers" => { "X-Customer-Campaign-ID" => "christmas_campaign" },
-         "text" => "Hi {{address.name}} \nSave big this Christmas in your area {{place}}! \nClick http://www.mysite.com and get huge discount\n Hurry, this offer is only to {{user_type}}\n {{sender}}",
-         "html" => "<p>Hi {{address.name}} \nSave big this Christmas in your area {{place}}! \nClick http://www.mysite.com and get huge discount\n</p><p>Hurry, this offer is only to {{user_type}}\n</p><p>{{sender}}</p>"}
-       }
+      content:
+      { from: { name: 'Your Name', email: 'you@yourdomain.com' },
+        subject: 'I am a test email',
+        reply_to: 'Sales <sales@yourdomain.com>',
+        headers: { 'X-Customer-CampaignID' => 'christmas_campaign' },
+        text: 'Hi from {{sender}} ... this is a test, and here is your address {{address}}',
+        html: '<p>Hi from {{sender}}</p<p>This is a test</p>'
+      }
+    }
 
     client.transmissions.create(properties)
 
