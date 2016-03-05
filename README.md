@@ -94,7 +94,7 @@ Create a new Transmission
 
     client.transmissions.create(properties)
 
-[Read about Create Transmission on SparkPost API](https://developers.sparkpost.com/api/#/reference/transmissions/create/create-a-transmission)
+<small><a href="https://developers.sparkpost.com/api/#/reference/transmissions/create/create-a-transmission" target="_blank">Create Transmission in SparkPost API Documentation</a></small>
 
 ### Sending Domains
 
