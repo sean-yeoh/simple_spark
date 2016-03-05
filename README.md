@@ -67,7 +67,7 @@ When messages are sent the Transmission will be deleted, so this will only retur
 
     client.transmissions.list
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/transmissions/list" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/transmissions/list" target="_blank">see SparkPost API Documentation</a>
 
 #### Create
 
@@ -96,7 +96,7 @@ Create a new Transmission
 
     client.transmissions.create(properties)
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/transmissions/create" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/transmissions/create" target="_blank">see SparkPost API Documentation</a>
 
 ### Sending Domains
 
@@ -106,7 +106,7 @@ List all Sending Domains
 
     client.sending_domains.list
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/sending-domains/create-and-list" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/sending-domains/create-and-list" target="_blank">see SparkPost API Documentation</a>
 
 #### Create
 
@@ -114,7 +114,7 @@ Create a new Sending Domain
 
     client.sending_domains.create('mail.mydomain.com')
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/sending-domains/create-and-list" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/sending-domains/create-and-list" target="_blank">see SparkPost API Documentation</a>
 
 #### Retrieve
 
@@ -122,7 +122,7 @@ Retrieves a Sending Template by its domain name
 
     client.sending_domains.retrieve('mail.mydomain.com')
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete" target="_blank">see SparkPost API Documentation</a>
 
 #### Update
 
@@ -131,7 +131,7 @@ Updates a Sending Domain with new values
     properties = { "tracking_domain" => "new.tracking.domain" }
     client.sending_domains.update('mail.mydomain.com', properties)
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete" target="_blank">see SparkPost API Documentation</a>
 
 #### Verify
 
@@ -146,7 +146,7 @@ token(s) against the stored token(s) for the specified sending domain.
     properties = { "dkim_verify": true, "spf_verify": true }
     client.sending_domains.retrieve('mail.mydomain.com', properties)
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/sending-domains/verify" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/sending-domains/verify" target="_blank">see SparkPost API Documentation</a>
 
 #### Delete
 
@@ -154,7 +154,7 @@ Deletes a Sending Domain permanently
 
     client.sending_domains.delete('mail.mydomain.com')
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete" target="_blank">see SparkPost API Documentation</a>
 
 ### Inbound Domains
 
@@ -164,7 +164,7 @@ List all Inbound Domains
 
     client.inbound_domains.list
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/inbound-domains/create-and-list" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/inbound-domains/create-and-list" target="_blank">see SparkPost API Documentation</a>
 
 #### Create
 
@@ -172,7 +172,7 @@ Create a new Inbound Domain
 
     client.inbound_domains.create('mail.mydomain.com')
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/inbound-domains/create-and-list" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/inbound-domains/create-and-list" target="_blank">see SparkPost API Documentation</a>
 
 #### Retrieve
 
@@ -180,7 +180,7 @@ Retrieves an Inbound Template by its domain name
 
     client.inbound_domains.retrieve('mail.mydomain.com')
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/inbound-domains/retrieve-and-delete" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/inbound-domains/retrieve-and-delete" target="_blank">see SparkPost API Documentation</a>
 
 #### Delete
 
@@ -188,7 +188,7 @@ Deletes an Inbound Domain permanently
 
     client.inbound_domains.delete('mail.mydomain.com')
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/inbound-domains/retrieve-and-delete" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/inbound-domains/retrieve-and-delete" target="_blank">see SparkPost API Documentation</a>
 
 ### Templates
 
@@ -198,7 +198,7 @@ List all templates
 
     client.templates.list
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/templates/create-and-list" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/templates/create-and-list" target="_blank">see SparkPost API Documentation</a>
 
 #### Create
 
@@ -207,7 +207,7 @@ Create a new Template
     properties = {  "name" => "Summer Sale!", "content"=> { "from" => "marketing@yourdomain.com",   "subject"=> "Summer deals",  "html"=> "<b>Check out these deals!</b>"}}
     client.templates.create(properties)
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/templates/create-and-list" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/templates/create-and-list" target="_blank">see SparkPost API Documentation</a>
 
 #### Retrieve
 
@@ -216,7 +216,7 @@ Retrieves a Template by its ID
     draft = nil
     client.templates.retrieve(yourtemplateid, draft)
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/templates/retrieve" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/templates/retrieve" target="_blank">see SparkPost API Documentation</a>
 
 #### Update
 
@@ -226,7 +226,7 @@ Updates a Template with new values
     update_published = false
     client.templates.update(yourtemplateid, properties, update_published)
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/templates/update" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/templates/update" target="_blank">see SparkPost API Documentation</a>
 
 #### Preview
 
@@ -236,7 +236,7 @@ Merges the template with the Substitution data and returns the result
     draft = nil
     client.templates.preview(yourtemplateid, properties, draft)
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/templates/preview" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/templates/preview" target="_blank">see SparkPost API Documentation</a>
 
 #### Delete
 
@@ -244,7 +244,7 @@ Deletes a template permanently
 
     client.templates.delete(yourtemplateid)
 
-<small><a href="https://developers.sparkpost.com/api/#/reference/templates/delete" target="_blank">see SparkPost API Documentation</a></small>
+<a href="https://developers.sparkpost.com/api/#/reference/templates/delete" target="_blank">see SparkPost API Documentation</a>
 
 ## Contributing
 
