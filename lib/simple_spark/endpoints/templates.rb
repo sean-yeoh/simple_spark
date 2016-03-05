@@ -15,7 +15,7 @@ module SimpleSpark
 
       # Lists the most recent version of each template in your account.
       # @return [Array] a list of Template hash objects
-      # @note See: https://developers.sparkpost.com/api/#/reference/templates/create-and-list/list-all-templates
+      # @note See: https://developers.sparkpost.com/api/#/reference/templates/create-and-list
       def list
         @client.call(:get, 'templates')
       end
@@ -25,7 +25,7 @@ module SimpleSpark
       #   fields are required, where content must contain the "from", "subject", and at
       #   least one of "html" or "text" fields.
       # @return [boolean] true if success
-      # @note See: https://developers.sparkpost.com/api/#/reference/templates/create-a-template
+      # @note See: https://developers.sparkpost.com/api/#/reference/templates/create-and-list
       def create(values)
         @client.call(:post, 'templates', values)
       end
@@ -36,7 +36,7 @@ module SimpleSpark
       #   If false, returns the most recent published template.
       #   If not provided, returns the most recent template version regardless of draft or published.
       # @return [Hash] the Template object
-      # @note https://developers.sparkpost.com/api/#/reference/templates/retrieve/retrieve-a-template
+      # @note https://developers.sparkpost.com/api/#/reference/templates/retrieve
       def retrieve(id, draft = nil)
         path = "templates/#{id}"
         query_params = draft.nil? ? {} : { draft: draft }
@@ -49,7 +49,7 @@ module SimpleSpark
       # @param update_published [boolean] If true, directly overwrite the existing published template. If false, create a new draft.
       #   If this template isn't yet published, setting to 'true' will result in a NotFound error
       #
-      # @note See: https://developers.sparkpost.com/api/#/reference/templates/update/update-a-template
+      # @note See: https://developers.sparkpost.com/api/#/reference/templates/update
       def update(id, values, update_published = false)
         @client.call(:put, "templates/#{id}", values,  update_published: update_published)
       end
@@ -62,7 +62,7 @@ module SimpleSpark
       #   If false, returns the most recent published template.
       #   If not provided, returns the most recent template version regardless of draft or published.
       #
-      # @note See: https://developers.sparkpost.com/api/#/reference/templates/update/preview-a-template
+      # @note See: https://developers.sparkpost.com/api/#/reference/templates/preview
       def preview(id, substitutions, draft = nil)
         query_params = draft.nil? ? {} : { draft: draft }
         @client.call(:post, "templates/#{id}/preview", substitutions, query_params)
@@ -71,7 +71,7 @@ module SimpleSpark
       # Delete a Template by its ID
       # @param id [String] the Unique Template ID to delete
       #
-      # @note See: https://developers.sparkpost.com/api/#/reference/templates/update/update-a-template
+      # @note See: https://developers.sparkpost.com/api/#/reference/templates/delete
       def delete(id)
         @client.call(:delete, "templates/#{id}")
       end

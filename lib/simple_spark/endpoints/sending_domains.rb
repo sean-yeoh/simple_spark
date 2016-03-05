@@ -23,7 +23,7 @@ module SimpleSpark
       # Create a sending domain
       # @param domain_name [String] the domain name to create
       # @param tracking_domain [String] the domain name to track this domain against
-      # @note See: https://developers.sparkpost.com/api/#/reference/sending-domains/create-and-list/create-a-sending-domain
+      # @note See: https://developers.sparkpost.com/api/#/reference/sending-domains/create-and-list
       def create(domain_name, tracking_domain)
         @client.call(:post, 'sending-domains', domain: domain_name, tracking_domain: tracking_domain)
       end
@@ -31,7 +31,7 @@ module SimpleSpark
       # Retrieve a sending domain
       # @param domain_name [String] the domain name to retrieve
       # @return [Hash] an Sending Domain hash object
-      # @note See: https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete/retrieve-a-sending-domain
+      # @note See: https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete
       def retrieve(domain_name)
         domain_name = @client.url_encode(domain_name)
         @client.call(:get, "sending-domains/#{domain_name}")
@@ -41,7 +41,7 @@ module SimpleSpark
       # @param domain_name [String] the domain to update
       # @param values [Hash] the values to update the sending domain with
       #
-      # @note See: https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete/update-a-sending-domain
+      # @note See: https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete
       def update(domain_name, values)
         domain_name = @client.url_encode(domain_name)
         @client.call(:put, "sending-domains/#{domain_name}", values)
@@ -56,7 +56,7 @@ module SimpleSpark
       #   be clicked.Including the fields "postmaster_at_token" and/or "abuse_at_token" in the request initiates a check of the provided
       #   token(s) against the stored token(s) for the specified sending domain.
       #
-      # @note See: https://developers.sparkpost.com/api/#/reference/sending-domains/verify/verify-a-sending-domain
+      # @note See: https://developers.sparkpost.com/api/#/reference/sending-domains/verify
       def verify(domain_name, values)
         domain_name = @client.url_encode(domain_name)
         @client.call(:post, "sending-domains/#{domain_name}", values)
@@ -64,7 +64,7 @@ module SimpleSpark
 
       # Delete a sending domain
       # @param domain_name [String] the domain name to delete
-      # @note See: https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete/delete-a-sending-domain
+      # @note See: https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete
       def delete(domain_name)
         domain_name = @client.url_encode(domain_name)
         @client.call(:delete, "sending-domains/#{domain_name}")

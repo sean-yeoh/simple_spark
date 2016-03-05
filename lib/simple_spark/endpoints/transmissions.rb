@@ -13,7 +13,7 @@ module SimpleSpark
       # @param values [Hash] the values to send with. This can be a complex object depending on the options chosen.
       # @param num_rcpt_errors [Integer] limit the number of recipient errors returned. Will default to all
       # @returns { results: { total_rejected_recipients: 0, total_accepted_recipients: 1, id: "11668787484950529" } }
-      # @note See: https://developers.sparkpost.com/api/#/reference/transmissions/create/create-a-transmission
+      # @note See: https://developers.sparkpost.com/api/#/reference/transmissions/create
       # @note Example:
       #   properties = {
       #     options: { open_tracking: true, click_tracking: true },
@@ -35,7 +35,6 @@ module SimpleSpark
       #       html: '<p>Hi from {{sender}}</p<p>This is a test</p>'
       #     }
       #   }
-
       def create(values, num_rcpt_errors = nil)
         query_params = num_rcpt_errors.nil? ? {} : { num_rcpt_errors: num_rcpt_errors }
         @client.call(:post, 'transmissions', values, query_params)
@@ -46,7 +45,7 @@ module SimpleSpark
       # @param template_id [String] limit results to this Template ID
       # @returns [ { "content": { "template_id": "winter_sale" }, "id": "11713562166689858",
       #   "campaign_id": "thanksgiving", "description": "", "state": "submitted" } ]
-      # @note See: https://developers.sparkpost.com/api/#/reference/transmissions/create/create-a-transmission
+      # @note See: https://developers.sparkpost.com/api/#/reference/transmissions/list
       def list(campaign_id = nil, template_id = nil)
         query_params = {}
         query_params[:campaign_id] = campaign_id if campaign_id
