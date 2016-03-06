@@ -23,7 +23,6 @@ module SimpleSpark
       fail Exceptions::InvalidConfiguration.new({ method: method }), 'Only GET, POST, PUT and DELETE are supported' unless [:get, :post, :put, :delete].include?(method)
 
       path = "#{@base_path}#{path}"
-      # path += '?' + URI.encode_www_form(query_params) if query_params.any?
       params = { path: path, headers: default_headers }
       params[:body] = body_values.to_json unless body_values.empty?
       params[:query] = query_params unless query_params.empty?
