@@ -4,7 +4,7 @@ require 'json'
 
 module SimpleSpark
   class Client
-    def initialize(api_key = nil, api_host = 'https://api.sparkpost.com', base_path = '/api/v1/', debug = defined?(Rails) && Rails.env.development?)
+    def initialize(api_key = nil, api_host = 'https://api.sparkpost.com', base_path = '/api/v1/', debug = nil)
       @api_key = api_key || ENV['SPARKPOST_API_KEY']
       @api_host = api_host || 'https://api.sparkpost.com'
       @base_path = base_path || '/api/v1/'
@@ -13,7 +13,7 @@ module SimpleSpark
       fail Exceptions::InvalidConfiguration.new, 'You must provide a SparkPost API host' unless @api_host # this should never occur unless the default above is changed
       fail Exceptions::InvalidConfiguration.new, 'You must provide a SparkPost base path' unless @base_path # this should never occur unless the default above is changed
 
-      @debug = debug
+      @debug = debug.nil? ? !(defined?(Rails) && Rails.env.development?).nil? : debug
       @session = Excon.new(@api_host, debug: @debug)
     end
 
