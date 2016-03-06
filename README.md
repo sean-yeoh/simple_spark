@@ -98,13 +98,35 @@ Create a new Transmission
 
 <a href="https://developers.sparkpost.com/api/#/reference/transmissions/create" target="_blank">see SparkPost API Documentation</a>
 
+### Messsage Events
+
+#### Samples
+
+List an example of the event data that will be included in a response from the Message Events search endpoint
+
+    client.message_events.sample
+
+To limit to just some events
+
+    client.message_events.sample('bounce')
+
+<a href="https://developers.sparkpost.com/api/#/reference/message-events/events-samples" target="_blank">see SparkPost API Documentation</a>
+
+#### Search
+
+Perform a filtered search for message event data. The response is sorted by descending timestamp. For full options you should consult the SparkPost API documentation
+
+    client.message_events.search(campaign_ids: 'christmas-campaign, summer-campaign')
+
+<a href="https://developers.sparkpost.com/api/#/reference/message-events/events-samples" target="_blank">see SparkPost API Documentation</a>
+
 ### Sending Domains
 
 #### List
 
 List all Sending Domains
 
-    client.sending_domains.list
+    client.message_events.list
 
 <a href="https://developers.sparkpost.com/api/#/reference/sending-domains/create-and-list" target="_blank">see SparkPost API Documentation</a>
 
