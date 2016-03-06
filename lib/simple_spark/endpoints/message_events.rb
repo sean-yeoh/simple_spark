@@ -15,7 +15,8 @@ module SimpleSpark
       # @return [Array] a list of sample MessageEvent hash objects
       # @note See: https://developers.sparkpost.com/api/#/reference/message-events/events-samples
       def samples(events = nil)
-        @client.call(:get, 'message-events/events/samples', {}, events: events)
+        query_params = events.nil? ? {} : { events: events }
+        @client.call(:get, 'message-events/events/samples', {}, query_params)
       end
 
       # Perform a filtered search for message event data. The response is sorted by descending timestamp.

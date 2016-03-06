@@ -6,4 +6,5 @@ require 'simple_spark/endpoints/templates'
 require 'simple_spark/endpoints/inbound_domains'
 require 'simple_spark/endpoints/sending_domains'
 require 'simple_spark/endpoints/message_events'
+require 'simple_spark/endpoints/webhooks'
 

@@ -104,11 +104,11 @@ Create a new Transmission
 
 List an example of the event data that will be included in a response from the Message Events search endpoint
 
-    client.message_events.sample
+    client.message_events.samples
 
 To limit to just some events
 
-    client.message_events.sample('bounce')
+    client.message_events.samples('bounce')
 
 <a href="https://developers.sparkpost.com/api/#/reference/message-events/events-samples" target="_blank">see SparkPost API Documentation</a>
 
@@ -120,13 +120,76 @@ Perform a filtered search for message event data. The response is sorted by desc
 
 <a href="https://developers.sparkpost.com/api/#/reference/message-events/events-samples" target="_blank">see SparkPost API Documentation</a>
 
+### Webhooks
+
+#### List
+
+List all Webhooks, optionally providing a timezone property
+
+    client.webhooks.list('America/New_York')
+
+<a href="https://developers.sparkpost.com/api/#/reference/webhooks/list" target="_blank">see SparkPost API Documentation</a>
+
+#### Create
+
+Create a new Webhook
+
+    client.webhooks.create(values)
+
+<a href="https://developers.sparkpost.com/api/#/reference/webhooks/create" target="_blank">see SparkPost API Documentation</a>
+
+#### Retrieve
+
+Retrieves a Webhook
+
+    client.webhooks.retrieve(webhook_id)
+
+<a href="https://developers.sparkpost.com/api/#/reference/webhooks/retrieve" target="_blank">see SparkPost API Documentation</a>
+
+#### Update
+
+Updates a Webhook with new values
+
+    properties = { "name" => "New name" }
+    client.webhooks.update(webhook_id, properties)
+
+<a href="https://developers.sparkpost.com/api/#/reference/webhooks/update-and-delete" target="_blank">see SparkPost API Documentation</a>
+
+#### Validate
+
+Validates a Webhook by sending an example message event batch from the Webhooks API to the target URL
+
+    client.webhooks.validate(webhook_id)
+
+<a href="https://developers.sparkpost.com/api/#/reference/webhooks/validate" target="_blank">see SparkPost API Documentation</a>
+
+#### Batch Status
+
+Retrieve the Batch Status Information for a Webhook
+
+    client.webhooks.batch_status(webhook_id)
+
+<a href="https://developers.sparkpost.com/api/#/reference/webhooks/batch-status" target="_blank">see SparkPost API Documentation</a>
+
+#### Samples
+
+List an example of the event data that will be sent from a webhook
+
+    client.webhooks.samples
+
+To limit to just some events
+
+    client.webhooks.samples('bounce')
+
+<a href="https://developers.sparkpost.com/api/#/reference/message-events/events-samples" target="_blank">see SparkPost API Documentation</a>
+
 ### Sending Domains
 
 #### List
 
 List all Sending Domains
 
-    client.message_events.list
+    client.sending_domains.list
 
 <a href="https://developers.sparkpost.com/api/#/reference/sending-domains/create-and-list" target="_blank">see SparkPost API Documentation</a>
 

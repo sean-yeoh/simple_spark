@@ -73,5 +73,9 @@ module SimpleSpark
     def message_events
       Endpoints::MessageEvents.new(self)
     end
+
+    def webhooks
+      Endpoints::Webhooks.new(self)
+    end
   end
 end
