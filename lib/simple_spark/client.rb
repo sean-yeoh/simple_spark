@@ -69,5 +69,9 @@ module SimpleSpark
     def transmissions
       Endpoints::Transmissions.new(self)
     end
+
+    def message_events
+      Endpoints::MessageEvents.new(self)
+    end
   end
 end
