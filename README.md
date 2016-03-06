@@ -8,16 +8,21 @@ This gem is an alternative to the [official Ruby gem](https://github.com/SparkPo
 
 Add this line to your application's Gemfile:
 
-    gem 'simple_spark'
+```ruby
+gem 'simple_spark'
+```
 
 And then execute:
 
-    $ bundle
+```ruby
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install simple_spark
-
+```ruby
+$ gem install simple_spark
+```
 ## Usage
 
 ### Why?
