@@ -118,6 +118,8 @@ client.transmissions.create(properties)
 To send attachments, they need to be Base64 encoded
 
 ```ruby
+require 'base64'
+
 properties = {
   recipients:  [{ address: { email: 'yourcustomer@theirdomain.com', name: 'Your Customer' }],
   content:
