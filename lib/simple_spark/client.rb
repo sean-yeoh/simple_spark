@@ -13,7 +13,9 @@ module SimpleSpark
       fail Exceptions::InvalidConfiguration.new, 'You must provide a SparkPost API host' unless @api_host # this should never occur unless the default above is changed
       fail Exceptions::InvalidConfiguration.new, 'You must provide a SparkPost base path' unless @base_path # this should never occur unless the default above is changed
 
-      @debug = debug.nil? ? !(defined?(Rails) && Rails.env.development?).nil? : debug
+      rails_development = !(defined?(Rails) && Rails.env.development?).nil?
+
+      @debug = debug.nil? ? rails_development : debug
       @session = Excon.new(@api_host, debug: @debug)
     end
 
