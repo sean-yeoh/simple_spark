@@ -51,25 +51,25 @@ require 'simple_spark'
 The simplest version of the client is to just provide your [API key from SparkPost](https://app.sparkpost.com/account/credentials)
 
 ```ruby
-client = SimpleSpark::Client.new('your_api_key')
+simple_spark = SimpleSpark::Client.new('your_api_key')
 ```
 
 You can also use ENV vars to configure the key, setting ENV['SPARKPOST_API_KEY'] will allow you to just use
 
 ```ruby
-client = SimpleSpark::Client.new
+simple_spark = SimpleSpark::Client.new
 ```
 
 You can also override the other options if you need to in advanced scenarios, the full signature is
 
 ```ruby
-client = SimpleSpark::Client.new('your_api_key', api_host = 'https://api.sparkpost.com', base_path = '/api/v1/' , debug = false)
+simple_spark = SimpleSpark::Client.new('your_api_key', api_host = 'https://api.sparkpost.com', base_path = '/api/v1/' , debug = false)
 ```
 
 Setting debug to true will cause [Excon](https://github.com/excon/excon) to output full debug information to the log, to default the other values and just set debug, send nil values
 
 ```ruby
-client = SimpleSpark::Client.new(nil, nil, nil, true)
+simple_spark = SimpleSpark::Client.new(nil, nil, nil, true)
 ```
 
 ### Transmissions
@@ -81,7 +81,7 @@ List all Transmissions
 When messages are sent the Transmission will be deleted, so this will only return transmissions that are about to be sent or are scheduled for the future
 
 ```ruby
-client.transmissions.list
+simple_spark.transmissions.list
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/transmissions/list" target="_blank">see SparkPost API Documentation</a>
@@ -112,7 +112,7 @@ properties = {
   }
 }
 
-client.transmissions.create(properties)
+simple_spark.transmissions.create(properties)
 ```
 
 To send attachments, they need to be Base64 encoded
@@ -134,7 +134,7 @@ properties = {
 encoded_attachment = Base64.encode64('My file contents')
 properties[:content][:attachments] = [{ name: "attachment.txt", type: "text/plain", data: encoded_attachment }]
 
-client.transmissions.create(properties)
+simple_spark.transmissions.create(properties)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/transmissions/create" target="_blank">see SparkPost API Documentation</a>
@@ -146,13 +146,13 @@ client.transmissions.create(properties)
 List an example of the event data that will be included in a response from the Message Events search endpoint
 
 ```ruby
-client.message_events.samples
+simple_spark.message_events.samples
 ```
 
 To limit to just some events
 
 ```ruby
-client.message_events.samples('bounce')
+simple_spark.message_events.samples('bounce')
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/message-events/events-samples" target="_blank">see SparkPost API Documentation</a>
@@ -162,7 +162,7 @@ client.message_events.samples('bounce')
 Perform a filtered search for message event data. The response is sorted by descending timestamp. For full options you should consult the SparkPost API documentation
 
 ```ruby
-client.message_events.search(campaign_ids: 'christmas-campaign, summer-campaign')
+simple_spark.message_events.search(campaign_ids: 'christmas-campaign, summer-campaign')
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/message-events/events-samples" target="_blank">see SparkPost API Documentation</a>
@@ -174,7 +174,7 @@ client.message_events.search(campaign_ids: 'christmas-campaign, summer-campaign'
 List all Webhooks, optionally providing a timezone property
 
 ```ruby
-client.webhooks.list('America/New_York')
+simple_spark.webhooks.list('America/New_York')
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/webhooks/list" target="_blank">see SparkPost API Documentation</a>
@@ -184,7 +184,7 @@ client.webhooks.list('America/New_York')
 Create a new Webhook
 
 ```ruby
-client.webhooks.create(values)
+simple_spark.webhooks.create(values)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/webhooks/create" target="_blank">see SparkPost API Documentation</a>
@@ -194,7 +194,7 @@ client.webhooks.create(values)
 Retrieves a Webhook
 
 ```ruby
-client.webhooks.retrieve(webhook_id)
+simple_spark.webhooks.retrieve(webhook_id)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/webhooks/retrieve" target="_blank">see SparkPost API Documentation</a>
@@ -205,7 +205,7 @@ Updates a Webhook with new values
 
 ```ruby
 properties = { "name" => "New name" }
-client.webhooks.update(webhook_id, properties)
+simple_spark.webhooks.update(webhook_id, properties)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/webhooks/update-and-delete" target="_blank">see SparkPost API Documentation</a>
@@ -215,7 +215,7 @@ client.webhooks.update(webhook_id, properties)
 Validates a Webhook by sending an example message event batch from the Webhooks API to the target URL
 
 ```ruby
-client.webhooks.validate(webhook_id)
+simple_spark.webhooks.validate(webhook_id)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/webhooks/validate" target="_blank">see SparkPost API Documentation</a>
@@ -225,7 +225,7 @@ client.webhooks.validate(webhook_id)
 Retrieve the Batch Status Information for a Webhook
 
 ```ruby
-client.webhooks.batch_status(webhook_id)
+simple_spark.webhooks.batch_status(webhook_id)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/webhooks/batch-status" target="_blank">see SparkPost API Documentation</a>
@@ -235,13 +235,13 @@ client.webhooks.batch_status(webhook_id)
 List an example of the event data that will be sent from a webhook
 
 ```ruby
-client.webhooks.samples
+simple_spark.webhooks.samples
 ```
 
 To limit to just some events
 
 ```ruby
-client.webhooks.samples('bounce')
+simple_spark.webhooks.samples('bounce')
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/message-events/events-samples" target="_blank">see SparkPost API Documentation</a>
@@ -253,7 +253,7 @@ client.webhooks.samples('bounce')
 List all Sending Domains
 
 ```ruby
-client.sending_domains.list
+simple_spark.sending_domains.list
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/sending-domains/create-and-list" target="_blank">see SparkPost API Documentation</a>
@@ -263,7 +263,7 @@ client.sending_domains.list
 Create a new Sending Domain
 
 ```ruby
-client.sending_domains.create('mail.mydomain.com')
+simple_spark.sending_domains.create('mail.mydomain.com')
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/sending-domains/create-and-list" target="_blank">see SparkPost API Documentation</a>
@@ -273,7 +273,7 @@ client.sending_domains.create('mail.mydomain.com')
 Retrieves a Sending Template by its domain name
 
 ```ruby
-client.sending_domains.retrieve('mail.mydomain.com')
+simple_spark.sending_domains.retrieve('mail.mydomain.com')
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete" target="_blank">see SparkPost API Documentation</a>
@@ -284,7 +284,7 @@ Updates a Sending Domain with new values
 
 ```ruby
 properties = { "tracking_domain" => "new.tracking.domain" }
-client.sending_domains.update('mail.mydomain.com', properties)
+simple_spark.sending_domains.update('mail.mydomain.com', properties)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete" target="_blank">see SparkPost API Documentation</a>
@@ -301,7 +301,7 @@ token(s) against the stored token(s) for the specified sending domain.
 
 ```ruby
 properties = { "dkim_verify": true, "spf_verify": true }
-client.sending_domains.retrieve('mail.mydomain.com', properties)
+simple_spark.sending_domains.retrieve('mail.mydomain.com', properties)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/sending-domains/verify" target="_blank">see SparkPost API Documentation</a>
@@ -311,7 +311,7 @@ client.sending_domains.retrieve('mail.mydomain.com', properties)
 Deletes a Sending Domain permanently
 
 ```ruby
-client.sending_domains.delete('mail.mydomain.com')
+simple_spark.sending_domains.delete('mail.mydomain.com')
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/sending-domains/retrieve-update-and-delete" target="_blank">see SparkPost API Documentation</a>
@@ -323,7 +323,7 @@ client.sending_domains.delete('mail.mydomain.com')
 List all Inbound Domains
 
 ```ruby
-client.inbound_domains.list
+simple_spark.inbound_domains.list
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/inbound-domains/create-and-list" target="_blank">see SparkPost API Documentation</a>
@@ -333,7 +333,7 @@ client.inbound_domains.list
 Create a new Inbound Domain
 
 ```ruby
-client.inbound_domains.create('mail.mydomain.com')
+simple_spark.inbound_domains.create('mail.mydomain.com')
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/inbound-domains/create-and-list" target="_blank">see SparkPost API Documentation</a>
@@ -343,7 +343,7 @@ client.inbound_domains.create('mail.mydomain.com')
 Retrieves an Inbound Template by its domain name
 
 ```ruby
-client.inbound_domains.retrieve('mail.mydomain.com')
+simple_spark.inbound_domains.retrieve('mail.mydomain.com')
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/inbound-domains/retrieve-and-delete" target="_blank">see SparkPost API Documentation</a>
@@ -353,7 +353,7 @@ client.inbound_domains.retrieve('mail.mydomain.com')
 Deletes an Inbound Domain permanently
 
 ```ruby
-client.inbound_domains.delete('mail.mydomain.com')
+simple_spark.inbound_domains.delete('mail.mydomain.com')
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/inbound-domains/retrieve-and-delete" target="_blank">see SparkPost API Documentation</a>
@@ -365,7 +365,7 @@ client.inbound_domains.delete('mail.mydomain.com')
 List all templates
 
 ```ruby
-client.templates.list
+simple_spark.templates.list
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/templates/create-and-list" target="_blank">see SparkPost API Documentation</a>
@@ -376,7 +376,7 @@ Create a new Template
 
 ```ruby
 properties = {  "name" => "Summer Sale!", "content"=> { "from" => "marketing@yourdomain.com",   "subject"=> "Summer deals",  "html"=> "<b>Check out these deals!</b>"}}
-client.templates.create(properties)
+simple_spark.templates.create(properties)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/templates/create-and-list" target="_blank">see SparkPost API Documentation</a>
@@ -387,7 +387,7 @@ Retrieves a Template by its ID
 
 ```ruby
 draft = nil
-client.templates.retrieve(yourtemplateid, draft)
+simple_spark.templates.retrieve(yourtemplateid, draft)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/templates/retrieve" target="_blank">see SparkPost API Documentation</a>
@@ -399,7 +399,7 @@ Updates a Template with new values
 ```ruby
 properties = { "name" => "Sorry, the Winter Sale!" }}
 update_published = false
-client.templates.update(yourtemplateid, properties, update_published)
+simple_spark.templates.update(yourtemplateid, properties, update_published)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/templates/update" target="_blank">see SparkPost API Documentation</a>
@@ -411,7 +411,7 @@ Merges the template with the Substitution data and returns the result
 ```ruby
 properties = { substitution_data: { name: 'Mr test User' } }
 draft = nil
-client.templates.preview(yourtemplateid, properties, draft)
+simple_spark.templates.preview(yourtemplateid, properties, draft)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/templates/preview" target="_blank">see SparkPost API Documentation</a>
@@ -421,7 +421,7 @@ client.templates.preview(yourtemplateid, properties, draft)
 Deletes a template permanently
 
 ```ruby
-client.templates.delete(yourtemplateid)
+simple_spark.templates.delete(yourtemplateid)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/templates/delete" target="_blank">see SparkPost API Documentation</a>
