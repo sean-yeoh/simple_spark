@@ -14,13 +14,13 @@ gem 'simple_spark'
 
 And then execute:
 
-```ruby
+```
 $ bundle
 ```
 
 Or install it yourself as:
 
-```ruby
+```
 $ gem install simple_spark
 ```
 ## Usage
@@ -44,23 +44,33 @@ It's day one, and it's a day one project.
 
 First you need to ensure you are requiring the library
 
-    require 'simple_spark'
+```ruby
+require 'simple_spark'
+```
 
 The simplest version of the client is to just provide your [API key from SparkPost](https://app.sparkpost.com/account/credentials)
 
-    client = SimpleSpark::Client.new('your_api_key')
+```ruby
+client = SimpleSpark::Client.new('your_api_key')
+```
 
 You can also use ENV vars to configure the key, setting ENV['SPARKPOST_API_KEY'] will allow you to just use
 
-    client = SimpleSpark::Client.new
+```ruby
+client = SimpleSpark::Client.new
+```
 
 You can also override the other options if you need to in advanced scenarios, the full signature is
 
-    client = SimpleSpark::Client.new('your_api_key', api_host = 'https://api.sparkpost.com', base_path = '/api/v1/' , debug = false)
+```ruby
+client = SimpleSpark::Client.new('your_api_key', api_host = 'https://api.sparkpost.com', base_path = '/api/v1/' , debug = false)
+```
 
 Setting debug to true will cause [Excon](https://github.com/excon/excon) to output full debug information to the log, to default the other values and just set debug, send nil values
 
-    client = SimpleSpark::Client.new(nil, nil, nil, true)
+```ruby
+client = SimpleSpark::Client.new(nil, nil, nil, true)
+```
 
 ### Transmissions
 
@@ -70,7 +80,9 @@ List all Transmissions
 
 When messages are sent the Transmission will be deleted, so this will only return transmissions that are about to be sent or are scheduled for the future
 
-    client.transmissions.list
+```ruby
+client.transmissions.list
+```
 
 <a href="https://developers.sparkpost.com/api/#/reference/transmissions/list" target="_blank">see SparkPost API Documentation</a>
 
