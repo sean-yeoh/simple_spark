@@ -96,6 +96,24 @@ Create a new Transmission
 
     client.transmissions.create(properties)
 
+To send attachments, they need to be Base64 encoded
+
+    properties = {
+      recipients:  [{ address: { email: 'yourcustomer@theirdomain.com', name: 'Your Customer' }],
+      content:
+      { from: { name: 'Your Name', email: 'you@yourdomain.com' },
+        subject: 'I am a test email',
+        html: '<p>Hi from {{sender}}</p<p>This is a test</p>',
+        attachments: [{ name: "attachment.txt", type: "text/plain", data: attachment }]
+      }
+    }
+
+    # load your file contents first, then use Base64 to encode them
+    encoded_attachment = Base64.encode64('My file contents')
+    properties[:content][:attachments] = [{ name: "attachment.txt", type: "text/plain", data: encoded_attachment }]
+
+    client.transmissions.create(properties)
+
 <a href="https://developers.sparkpost.com/api/#/reference/transmissions/create" target="_blank">see SparkPost API Documentation</a>
 
 ### Messsage Events
