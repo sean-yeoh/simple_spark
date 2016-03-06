@@ -377,7 +377,8 @@ simple_spark.templates.list
 Create a new Template
 
 ```ruby
-properties = {  "name" => "Summer Sale!", "content"=> { "from" => "marketing@yourdomain.com",   "subject"=> "Summer deals",  "html"=> "<b>Check out these deals!</b>"}}
+properties = { "name" => "Summer Sale!",
+               "content"=> { "from" => "marketing@yourdomain.com",   "subject"=> "Summer deals", "html"=> "<b>Check out these deals!</b>" } }
 simple_spark.templates.create(properties)
 ```
 
