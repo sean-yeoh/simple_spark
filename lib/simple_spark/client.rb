@@ -4,7 +4,7 @@ require 'json'
 
 module SimpleSpark
   class Client
-    def initialize(api_key = nil, api_host = 'https://api.sparkpost.com', base_path = '/api/v1/', debug = false)
+    def initialize(api_key = nil, api_host = 'https://api.sparkpost.com', base_path = '/api/v1/', debug = defined?(Rails) && Rails.env.development?)
       @api_key = api_key || ENV['SPARKPOST_API_KEY']
       @api_host = api_host || 'https://api.sparkpost.com'
       @base_path = base_path || '/api/v1/'

@@ -68,6 +68,8 @@ simple_spark = SimpleSpark::Client.new('your_api_key', api_host = 'https://api.s
 
 Setting debug to true will cause [Excon](https://github.com/excon/excon) to output full debug information to the log, to default the other values and just set debug, send nil values
 
+This will default to true if you are running under Rails and are in a development environment, otherwise it will default to false
+
 ```ruby
 simple_spark = SimpleSpark::Client.new(nil, nil, nil, true)
 ```
