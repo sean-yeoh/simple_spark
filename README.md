@@ -272,7 +272,7 @@ simple_spark.sending_domains.create('mail.mydomain.com')
 
 #### Retrieve
 
-Retrieves a Sending Template by its domain name
+Retrieves a Sending Domain by its domain name
 
 ```ruby
 simple_spark.sending_domains.retrieve('mail.mydomain.com')
