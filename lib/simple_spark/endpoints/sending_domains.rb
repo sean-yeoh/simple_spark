@@ -59,7 +59,7 @@ module SimpleSpark
       # @note See: https://developers.sparkpost.com/api/#/reference/sending-domains/verify
       def verify(domain_name, values)
         domain_name = @client.url_encode(domain_name)
-        @client.call(:post, "sending-domains/#{domain_name}", values)
+        @client.call(:post, "sending-domains/#{domain_name}/verify", values)
       end
 
       # Delete a sending domain
