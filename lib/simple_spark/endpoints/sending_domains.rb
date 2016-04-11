@@ -24,8 +24,8 @@ module SimpleSpark
       # @param domain_name [String] the domain name to create
       # @param tracking_domain [String] the domain name to track this domain against
       # @note See: https://developers.sparkpost.com/api/#/reference/sending-domains/create-and-list
-      def create(domain_name, tracking_domain)
-        @client.call(:post, 'sending-domains', domain: domain_name, tracking_domain: tracking_domain)
+      def create(values)
+        @client.call(:post, 'sending-domains', values)
       end
 
       # Retrieve a sending domain
