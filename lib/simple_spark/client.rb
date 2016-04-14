@@ -78,5 +78,9 @@ module SimpleSpark
     def webhooks
       Endpoints::Webhooks.new(self)
     end
+
+    def relay_webhooks
+      Endpoints::RelayWebhooks.new(self)
+    end
   end
 end
