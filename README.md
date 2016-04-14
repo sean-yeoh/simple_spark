@@ -342,7 +342,7 @@ simple_spark.inbound_domains.create('mail.mydomain.com')
 
 #### Retrieve
 
-Retrieves an Inbound Template by its domain name
+Retrieves an Inbound Domain by its domain name
 
 ```ruby
 simple_spark.inbound_domains.retrieve('mail.mydomain.com')
@@ -359,6 +359,68 @@ simple_spark.inbound_domains.delete('mail.mydomain.com')
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/inbound-domains/retrieve-and-delete" target="_blank">see SparkPost API Documentation</a>
+
+### Relay Webhooks
+
+#### List
+
+List all Relay Webhooks
+
+```ruby
+simple_spark.relay_webhooks.list
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/relay-webhooks/create-and-list/list-all-relay-webhooks" target="_blank">see SparkPost API Documentation</a>
+
+#### Create
+
+Create a new Relay Webhook
+
+```ruby
+properties = {
+  name: "Replies Webhook",
+  target: "https://webhooks.customer.example/replies",
+  auth_token: "",
+  match: {
+    protocol: "SMTP",
+    domain: "email.example.com"
+  }
+}
+simple_spark.relay_webhooks.create(properties)
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/relay-webhooks/create-and-list/create-a-relay-webhook" target="_blank">see SparkPost API Documentation</a>
+
+#### Retrieve
+
+Retrieves a Relay Webhook by its id
+
+```ruby
+simple_spark.relay_webhooks.retrieve(id)
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/relay-webhooks/retrieve-update-and-delete/retrieve-a-relay-webhook" target="_blank">see SparkPost API Documentation</a>
+
+#### Update
+
+Updates a Relay Webhook with new values
+
+```ruby
+properties = { name: "Replies Webhook" }
+simple_spark.relay_webhooks.update(id, properties)
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/templates/update" target="_blank">see SparkPost API Documentation</a>
+
+#### Delete
+
+Deletes a Relay Webhook permanently
+
+```ruby
+simple_spark.relay_webhooks.delete(id)
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/relay-webhooks/retrieve-update-and-delete/delete-a-relay-webhook" target="_blank">see SparkPost API Documentation</a>
 
 ### Templates
 
@@ -404,7 +466,7 @@ simple_spark.templates.retrieve(yourtemplateid, draft)
 Updates a Template with new values
 
 ```ruby
-properties = { "name" => "Sorry, the Winter Sale!" }}
+properties = { "name" => "Sorry, the Winter Sale!" }
 update_published = false
 simple_spark.templates.update(yourtemplateid, properties, update_published)
 ```
