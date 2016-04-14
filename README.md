@@ -410,7 +410,7 @@ properties = { name: "Replies Webhook" }
 simple_spark.relay_webhooks.update(id, properties)
 ```
 
-<a href="https://developers.sparkpost.com/api/#/reference/templates/update" target="_blank">see SparkPost API Documentation</a>
+<a href="https://developers.sparkpost.com/api/#/reference/relay-webhooks/create-and-list/update-a-relay-webhook" target="_blank">see SparkPost API Documentation</a>
 
 #### Delete
 
