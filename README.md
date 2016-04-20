@@ -23,6 +23,7 @@ Or install it yourself as:
 ```
 $ gem install simple_spark
 ```
+
 ## Usage
 
 ### Why?
@@ -506,9 +507,19 @@ simple_spark.templates.delete(yourtemplateid)
 
 <a href="https://developers.sparkpost.com/api/#/reference/templates/delete" target="_blank">see SparkPost API Documentation</a>
 
-## Contributing
+## Changelog
 
-Not right now, but in time ...
+### 0.0.4
+
+- Merged pull request to fix Rails development check for debug
+
+### 0.0.3
+
+- Breaking change: client paramaters are now a hash of options instead of ordered params
+- Added Subaccount support to client
+- Added Headers support to client
+
+## Contributing
 
 1. Fork it ( https://github.com/leadmachineapp/simple_spark/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
