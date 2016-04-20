@@ -16,7 +16,7 @@ module SimpleSpark
       fail Exceptions::InvalidConfiguration.new, 'You must provide a SparkPost base path' unless @base_path # this should never occur unless the default above is changed
       fail Exceptions::InvalidConfiguration.new, 'The headers options provided must be a valid Hash' if @headers && !@headers.is_a?(Hash)
 
-      rails_development = !(defined?(Rails) && Rails.env.development?).nil?
+      rails_development = true & defined?(Rails) && Rails.env.development?
 
       @debug = options[:debug].nil? ? rails_development : options[:debug]
 
