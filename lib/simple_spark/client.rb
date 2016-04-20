@@ -4,26 +4,30 @@ require 'json'
 
 module SimpleSpark
   class Client
-    def initialize(api_key = nil, api_host = 'https://api.sparkpost.com', base_path = '/api/v1/', debug = nil)
-      @api_key = api_key || ENV['SPARKPOST_API_KEY']
-      @api_host = api_host || 'https://api.sparkpost.com'
-      @base_path = base_path || '/api/v1/'
+    def initialize(options = {})
+      @api_key = options[:api_key] || ENV['SPARKPOST_API_KEY']
+      @api_host = options[:api_host] || 'https://api.sparkpost.com'
+      @base_path = options[:base_path] || '/api/v1/'
+      @subaccount_id = options[:subaccount_id]
+      @headers = options[:headers]
 
       fail Exceptions::InvalidConfiguration.new, 'You must provide a SparkPost API key' unless @api_key
       fail Exceptions::InvalidConfiguration.new, 'You must provide a SparkPost API host' unless @api_host # this should never occur unless the default above is changed
       fail Exceptions::InvalidConfiguration.new, 'You must provide a SparkPost base path' unless @base_path # this should never occur unless the default above is changed
+      fail Exceptions::InvalidConfiguration.new, 'The headers options provided must be a valid Hash' if @headers && !@headers.is_a?(Hash)
 
       rails_development = !(defined?(Rails) && Rails.env.development?).nil?
 
-      @debug = debug.nil? ? rails_development : debug
+      @debug = options[:debug].nil? ? rails_development : options[:debug]
+
       @session = Excon.new(@api_host, debug: @debug)
     end
 
     def call(method, path, body_values = {}, query_params = {})
-      fail Exceptions::InvalidConfiguration.new({ method: method }), 'Only GET, POST, PUT and DELETE are supported' unless [:get, :post, :put, :delete].include?(method)
+      fail Exceptions::InvalidConfiguration.new(method: method), 'Only GET, POST, PUT and DELETE are supported' unless [:get, :post, :put, :delete].include?(method)
 
       path = "#{@base_path}#{path}"
-      params = { path: path, headers: default_headers }
+      params = { path: path, headers: headers }
       params[:body] = body_values.to_json unless body_values.empty?
       params[:query] = query_params unless query_params.empty?
       response = @session.send(method.to_s, params)
@@ -44,15 +48,19 @@ module SimpleSpark
 
     # Copied from http://apidock.com/ruby/ERB/Util/url_encode
     def url_encode(s)
-      s.to_s.dup.force_encoding("ASCII-8BIT").gsub(/[^a-zA-Z0-9_\-.]/) { sprintf("%%%02X", $&.unpack("C")[0]) }
+      s.to_s.dup.force_encoding('ASCII-8BIT').gsub(/[^a-zA-Z0-9_\-.]/) { sprintf('%%%02X', $&.unpack('C')[0]) }
     end
 
-    def default_headers
-      {
+    def headers
+      defaults = {
         'User-Agent' => 'simple_spark/' + VERSION,
         'Content-Type' => 'application/json',
+        'Accept' => 'application/json',
         'Authorization' => @api_key
       }
+      defaults.merge!('X-MSYS-SUBACCOUNT' => @subaccount_id) if @subaccount_id
+      defaults.merge!(@headers) if @headers
+      defaults
     end
 
     def inbound_domains

@@ -35,8 +35,7 @@ The official gem currently only supports the send_message (create) method of /tr
 
 ### Status
 
-It's day one, and it's a day one project.
-
+Breaking change: initialising the client is now done with a hash instead of with ordered parameters, as there were getting to be too many after supporting Subaccounts and user specified headers
 
 ## Endpoints
 
@@ -51,7 +50,7 @@ require 'simple_spark'
 The simplest version of the client is to just provide your [API key from SparkPost](https://app.sparkpost.com/account/credentials)
 
 ```ruby
-simple_spark = SimpleSpark::Client.new('your_api_key')
+simple_spark = SimpleSpark::Client.new(api_key: 'your_api_key')
 ```
 
 You can also use ENV vars to configure the key, setting ENV['SPARKPOST_API_KEY'] will allow you to just use
@@ -63,15 +62,27 @@ simple_spark = SimpleSpark::Client.new
 You can also override the other options if you need to in advanced scenarios, the full signature is (api_key, api_host, base_path, debug), i.e.
 
 ```ruby
-simple_spark = SimpleSpark::Client.new('your_api_key', 'https://api.sparkpost.com',  '/api/v1/', false)
+simple_spark = SimpleSpark::Client.new(api_key: 'your_api_key', api_host: 'https://api.sparkpost.com',  base_path: '/api/v1/', debug: false, subaccount_id: 'my_subaccount')
 ```
 
-Setting debug to true will cause [Excon](https://github.com/excon/excon) to output full debug information to the log, to default the other values and just set debug, send nil values
+#### Debug
+
+Setting debug to true will cause [Excon](https://github.com/excon/excon) to output full debug information to the log.
 
 This will default to true if you are running under Rails and are in a development environment, otherwise it will default to false (setting other values to nil will cause them to use their defaults)
 
+#### Subaccounts
+
+By setting subaccount_id on your client you are telling Simple Spark to use that subaccount for all calls made on this instance of the client.
+
+Not all Sparkpost calls support the Subaccount feature, and their API will throw an unauthorized error if you use a subaccount_id on an unsupported call. Depending on your code this may mean you need to instantiate two instances of the Simple Spark client in your code, one for subaccount calls, and one for other calls. This is a less than ideal solution, but due to the rapid pace of Sparkpost development on their API this is the option that causes least dependency up Simple Spark to be updated as their API is.
+
+#### Headers
+
+Should you have any need to override the headers that are sent by default, then you can specify headers as an option. The headers specified here will override any of the generated headers that the library creates. In normal operation there should be no reason to use this option, but it is provided for convenience and to allow for Sparkpost updating their API in any unexpected way.
+
 ```ruby
-simple_spark = SimpleSpark::Client.new(nil, nil, nil, true)
+simple_spark = SimpleSpark::Client.new(api_key: 'your_api_key', headers: { 'NewSparkpostHeader' => 'hello'})
 ```
 
 ### Transmissions
