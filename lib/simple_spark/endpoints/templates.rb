@@ -17,7 +17,7 @@ module SimpleSpark
       # @return [Array] a list of Template hash objects
       # @note See: https://developers.sparkpost.com/api/#/reference/templates/create-and-list
       def list
-        @client.call(:get, 'templates')
+        @client.call(method: :get, path: 'templates')
       end
 
       # Create a template by providing values for the template object.
@@ -27,7 +27,7 @@ module SimpleSpark
       # @return [boolean] true if success
       # @note See: https://developers.sparkpost.com/api/#/reference/templates/create-and-list
       def create(values)
-        @client.call(:post, 'templates', values)
+        @client.call(method: :post, path: 'templates', body_values: values)
       end
 
       # Retrieve a Template by its ID
@@ -40,7 +40,7 @@ module SimpleSpark
       def retrieve(id, draft = nil)
         path = "templates/#{id}"
         query_params = draft.nil? ? {} : { draft: draft }
-        @client.call(:get, path, {}, query_params)
+        @client.call(method: :get, path: path, query_values: query_params)
       end
 
       # Update a Template by its ID
@@ -51,7 +51,7 @@ module SimpleSpark
       #
       # @note See: https://developers.sparkpost.com/api/#/reference/templates/update
       def update(id, values, update_published = false)
-        @client.call(:put, "templates/#{id}", values,  update_published: update_published)
+        @client.call(method: :put, path: "templates/#{id}", body_values: values,  query_values: { update_published: update_published })
       end
 
       # Preview a Template by its ID
@@ -65,7 +65,7 @@ module SimpleSpark
       # @note See: https://developers.sparkpost.com/api/#/reference/templates/preview
       def preview(id, substitutions, draft = nil)
         query_params = draft.nil? ? {} : { draft: draft }
-        @client.call(:post, "templates/#{id}/preview", substitutions, query_params)
+        @client.call(method: :post, path: "templates/#{id}/preview", body_values: substitutions, query_values: query_params)
       end
 
       # Delete a Template by its ID
@@ -73,7 +73,7 @@ module SimpleSpark
       #
       # @note See: https://developers.sparkpost.com/api/#/reference/templates/delete
       def delete(id)
-        @client.call(:delete, "templates/#{id}")
+        @client.call(method: :delete, path: "templates/#{id}")
       end
     end
   end

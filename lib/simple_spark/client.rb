@@ -23,7 +23,13 @@ module SimpleSpark
       @session = Excon.new(@api_host, debug: @debug)
     end
 
-    def call(method, path, body_values = {}, query_params = {})
+    def call(opts)
+      method = opts[:method]
+      path = opts[:path]
+      body_values = opts[:body_values] || {}
+      query_params = opts[:query_params] || {}
+      extract_results = opts[:extract_results] || true
+
       fail Exceptions::InvalidConfiguration.new(method: method), 'Only GET, POST, PUT and DELETE are supported' unless [:get, :post, :put, :delete].include?(method)
 
       path = "#{@base_path}#{path}"
@@ -32,17 +38,21 @@ module SimpleSpark
       params[:query] = query_params unless query_params.empty?
       response = @session.send(method.to_s, params)
 
-      process_response(response)
+      process_response(response, extract_results)
     end
 
-    def process_response(response)
+    def process_response(response, extract_results)
       return true if response.status == 204
 
       response_body = JSON.parse(response.body)
       if response_body['errors']
         Exceptions::Error.fail_with_exception_for_status(response.status, response_body['errors'])
       else
-        response_body['results'] ? response_body['results'] : true
+        if extract_results
+          response_body['results'] ? response_body['results'] : true
+        else
+          response
+        end
       end
     end
 

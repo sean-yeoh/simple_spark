@@ -15,14 +15,14 @@ module SimpleSpark
       # @note See: https://developers.sparkpost.com/api/#/reference/webhooks/list
       def list(timezone = nil)
         query_params = timezone.nil? ? {} : { timezone: timezone }
-        @client.call(:get, 'webhooks', {}, query_params)
+        @client.call(method: :get, path: 'webhooks', query_values: query_params)
       end
 
       # Create a webhook
       # @param values [Hash] the values to create the webhook with
       # @note See: https://developers.sparkpost.com/api/#/reference/webhooks/create
       def create(values)
-        @client.call(:post, 'webhooks', values)
+        @client.call(method: :post, path: 'webhooks', body_values: values)
       end
 
       # Retrieve details about a webhook by specifying its id
@@ -30,7 +30,7 @@ module SimpleSpark
       # @return [Hash] an Webhook hash object
       # @note See: https://developers.sparkpost.com/api/#/reference/webhooks/retrieve
       def retrieve(id)
-        @client.call(:get, "webhooks/#{id}")
+        @client.call(method: :get, path: "webhooks/#{id}")
       end
 
       # Update a Webhook by its ID
@@ -38,14 +38,14 @@ module SimpleSpark
       # @param values [Hash] the values to update the webhook with
       # @note See: https://developers.sparkpost.com/api/#/reference/webhooks/update-and-delete
       def update(id, values)
-        @client.call(:put, "webhooks/#{id}", values)
+        @client.call(method: :put, path: "webhooks/#{id}", body_values: values)
       end
 
       # Validates a Webhook by sending an example message event batch from the Webhooks API to the target URL
       # @param id [String] the ID of the webhook
       # @note See: https://developers.sparkpost.com/api/#/reference/webhooks/validate
       def validate(id)
-        @client.call(:post, "webhooks/#{id}/validate")
+        @client.call(method: :post, path: "webhooks/#{id}/validate")
       end
 
       # Batch status information
@@ -54,7 +54,7 @@ module SimpleSpark
       # @note See: https://developers.sparkpost.com/api/#/reference/webhooks/batch-status
       def batch_status(id, limit = nil)
         query_params = limit.nil? ? {} : { limit: limit }
-        @client.call(:get, "webhooks/#{id}/batch-status", {}, query_params)
+        @client.call(method: :get, path: "webhooks/#{id}/batch-status", query_values: query_params)
       end
 
       # Returns sample event data
@@ -63,14 +63,14 @@ module SimpleSpark
       # @note See: https://developers.sparkpost.com/api/#/reference/webhooks/events-samples
       def samples(events = nil)
         query_params = events.nil? ? {} : { events: events }
-        @client.call(:get, 'webhooks/events/samples', {}, query_params)
+        @client.call(method: :get, path: 'webhooks/events/samples', query_values: query_params)
       end
 
       # Delete a webhook
       # @param id [String] the ID
       # @note See: https://developers.sparkpost.com/api/#/reference/webhooks/update-and-delete
       def delete(id)
-        @client.call(:delete, "webhooks/#{id}")
+        @client.call(method: :delete, path: "webhooks/#{id}")
       end
     end
   end

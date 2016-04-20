@@ -37,7 +37,7 @@ module SimpleSpark
       #   }
       def create(values, num_rcpt_errors = nil)
         query_params = num_rcpt_errors.nil? ? {} : { num_rcpt_errors: num_rcpt_errors }
-        @client.call(:post, 'transmissions', values, query_params)
+        @client.call(method: :post, path: 'transmissions', body_values: values, query_values: query_params)
       end
 
       # Sends an email message
@@ -50,7 +50,7 @@ module SimpleSpark
         query_params = {}
         query_params[:campaign_id] = campaign_id if campaign_id
         query_params[:template_id] = template_id if template_id
-        @client.call(:get, 'transmissions', {}, query_params)
+        @client.call(method: :get, path: 'transmissions', query_values: query_params)
       end
 
       # send_message to be reserved as a 'quick' helper method to avoid using hash for Create

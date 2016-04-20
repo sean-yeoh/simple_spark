@@ -13,7 +13,7 @@ module SimpleSpark
       # @return [Array] a list of Relay Webhook hash objects
       # @note See: https://developers.sparkpost.com/api/#/reference/relay-webhooks/create-and-list/list-all-relay-webhooks
       def list
-        @client.call(:get, 'relay-webhooks')
+        @client.call(method: :get, path: 'relay-webhooks')
       end
 
       # Create a relay webhook
@@ -30,7 +30,7 @@ module SimpleSpark
       #   }
       # }
       def create(values)
-        @client.call(:post, 'relay-webhooks', values)
+        @client.call(method: :post, path: 'relay-webhooks', body_values: values)
       end
 
       # Retrieve a relay webhook
@@ -38,7 +38,7 @@ module SimpleSpark
       # @return [Hash] an Relay Webhook hash object
       # @note See: https://developers.sparkpost.com/api/#/reference/relay-webhooks/retrieve-update-and-delete/retrieve-a-relay-webhook
       def retrieve(webhook_id)
-        @client.call(:get, "relay-webhooks/#{webhook_id}")
+        @client.call(method: :get, path: "relay-webhooks/#{webhook_id}")
       end
 
       # Update a relay webhook
@@ -52,14 +52,14 @@ module SimpleSpark
       # }
       # @note See: https://developers.sparkpost.com/api/#/reference/relay-webhooks/create-and-list/update-a-relay-webhook
       def update(webhook_id, values)
-        @client.call(:put, "relay-webhooks/#{webhook_id}", values)
+        @client.call(method: :put, path: "relay-webhooks/#{webhook_id}", body_values: values)
       end
 
       # Delete a relay webhook
       # @param webhook_id [String] the id to retrieve
       # @note See: https://developers.sparkpost.com/api/#/reference/relay-webhooks/retrieve-update-and-delete/delete-a-relay-webhook
       def delete(webhook_id)
-        @client.call(:delete, "relay-webhooks/#{webhook_id}")
+        @client.call(method: :delete, path: "relay-webhooks/#{webhook_id}")
       end
     end
   end
