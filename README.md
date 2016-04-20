@@ -27,11 +27,11 @@ $ gem install simple_spark
 
 ### Why?
 
-The official gem is somewhat lacking in functionality, though with the demise of Mandrill it seems SparkPost may have decided to restart development on it.
+The official gem was somewhat lacking in functionality, though with the demise of Mandrill it seems SparkPost has decided to restart development on it.
 
 But, not being in a mood to wait, and as we would have to write wrappers around all the functions we would need anyway, it seemed much easier to write the wrapper as a gem and allow others to use it too.
 
-The official gem currently only supports the send_message (create) method of /transmissions and it does it with a limited argument set. As it uses method parameters for each of the arguments it supports, it is not possible to use all the functionality the SparkPost API has. This gem will allow passing the parameters as hashes, allowing you to directly copy an API example into code and take full advantage of all the API functions.
+Development on the offical gem steams ahead, but I still prefer the more 'ruby-like' nature of this approach and the lack of such tight depenedency on the Sparkpost API
 
 ### Status
 
