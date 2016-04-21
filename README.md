@@ -86,6 +86,78 @@ Should you have any need to override the headers that are sent by default, then 
 simple_spark = SimpleSpark::Client.new(api_key: 'your_api_key', headers: { 'NewSparkpostHeader' => 'hello'})
 ```
 
+
+### Metrics
+
+#### Discoverability Links
+
+```ruby
+simple_spark.metrics.discoverability_links
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/metrics/metrics-discoverability-links" target="_blank">see SparkPost API Documentation</a>
+
+#### Deliverability Metrics Summary
+
+Summary of metrics
+
+```ruby
+simple_spark.metrics.deliverability_metrics_summary(from: '2013-04-20T07:12', to: '2018-04-20T07:12', metrics: 'count_accepted', timezone: 'America/New_York')
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/metrics/discoverability-links/deliverability-metrics-summary" target="_blank">see SparkPost API Documentation</a>
+
+#### Deliverability Metrics by Domain
+
+Metrics grouped by Domain
+
+```ruby
+simple_spark.metrics.deliverability_metrics_by_domain(from: '2013-04-20T07:12', to: '2018-04-20T07:12', metrics: 'count_accepted', timezone: 'America/New_York')
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/metrics/deliverability-metrics/deliverability-metrics-by-domain" target="_blank">see SparkPost API Documentation</a>
+
+#### Deliverability Metrics by Sending Domain
+
+Metrics grouped by Sending Domain
+
+```ruby
+simple_spark.metrics.deliverability_metrics_by_sending_domain(from: '2013-04-20T07:12', to: '2018-04-20T07:12', metrics: 'count_accepted', timezone: 'America/New_York')
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/metrics/deliverability-metrics/deliverability-metrics-by-sending-domain" target="_blank">see SparkPost API Documentation</a>
+
+#### Deliverability Metrics by Subaccount
+
+Metrics grouped by Subaccount
+
+```ruby
+simple_spark.metrics.deliverability_metrics_by_subaccount(from: '2013-04-20T07:12', to: '2018-04-20T07:12', metrics: 'count_accepted', timezone: 'America/New_York')
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/metrics/deliverability-metrics/deliverability-metrics-by-subaccount" target="_blank">see SparkPost API Documentation</a>
+
+#### Deliverability Metrics by Campaign
+
+Metrics grouped by Campaign
+
+```ruby
+simple_spark.metrics.deliverability_metrics_by_campaign(from: '2013-04-20T07:12', to: '2018-04-20T07:12', metrics: 'count_accepted', timezone: 'America/New_York')
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/metrics/deliverability-metrics/deliverability-metrics-by-campaign" target="_blank">see SparkPost API Documentation</a>
+
+#### Deliverability Metrics by Template
+
+Metrics grouped by Template
+
+```ruby
+simple_spark.metrics.deliverability_metrics_by_template(from: '2013-04-20T07:12', to: '2018-04-20T07:12', metrics: 'count_accepted', timezone: 'America/New_York')
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/metrics/deliverability-metrics/deliverability-metrics-by-template" target="_blank">see SparkPost API Documentation</a>
+
+
 ### Transmissions
 
 #### List
