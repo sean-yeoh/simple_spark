@@ -88,6 +88,18 @@ module SimpleSpark
         @client.call(method: :get, path: 'metrics/deliverability/template', query_values: values)
       end
 
+      # Time Series
+      # @param values [Hash] the values to query with
+      # @note dates from and need to be sent using strftime('%Y-%m-%dT%H:%M'), for convenience if provided as Time, Date or DateTime objects they will be automatically converted
+      # @return [Array] containg Metrics results with time stamps i.e. [{"count_targeted"=>0, "ts"=>"2011-06-01T00:00:00+00:00"}]
+      # @note Example:
+      #   client.metrics.deliverability_time_series(from: '2013-04-20T07:12', to: '2018-04-20T07:12', metrics: 'count_accepted', timezone: 'America/New_York', precision: 'day')
+      # @note See: https://developers.sparkpost.com/api/#/reference/metrics/time-series/time-series-metrics
+      def deliverability_time_series(values)
+        format_date_time_values(values)
+        @client.call(method: :get, path: 'metrics/deliverability/time-series', query_values: values)
+      end
+
       private
 
       def format_date_time_values(values)

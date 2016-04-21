@@ -193,6 +193,28 @@ simple_spark.metrics.deliverability_metrics_by_template(properties)
 
 <a href="https://developers.sparkpost.com/api/#/reference/metrics/deliverability-metrics/deliverability-metrics-by-template" target="_blank">see SparkPost API Documentation</a>
 
+#### Deliverability Metrics as Time Series
+
+Metrics across a Time Series
+
+```ruby
+properties = {
+  from: '2013-04-20T07:12',
+  to: '2018-04-20T07:12',
+  metrics: 'count_accepted',
+  timezone: 'America/New_York',
+  precision: 'day'
+}
+simple_spark.metrics.deliverability_time_series(properties)
+```
+
+Returns an array of metrics with time stamps:
+
+```ruby
+[{ "count_targeted"=>2, "ts"=>"2011-06-01T00:00:00+00:00" }, { "count_targeted"=>3, "ts"=>"2011-06-02T00:00:00+00:00" }]
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/metrics/time-series/time-series-metrics" target="_blank">see SparkPost API Documentation</a>
 
 ### Transmissions
 
@@ -665,6 +687,10 @@ simple_spark.templates.delete(yourtemplateid)
 <a href="https://developers.sparkpost.com/api/#/reference/templates/delete" target="_blank">see SparkPost API Documentation</a>
 
 ## Changelog
+
+### 0.0.7
+
+Added Time Series to Metrics
 
 ### 0.0.6
 
