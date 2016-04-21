@@ -27,7 +27,7 @@ module SimpleSpark
       method = opts[:method]
       path = opts[:path]
       body_values = opts[:body_values] || {}
-      query_params = opts[:query_params] || {}
+      query_params = opts[:query_values] || {}
       extract_results = opts[:extract_results].nil? ? true : opts[:extract_results]
 
       fail Exceptions::InvalidConfiguration.new(method: method), 'Only GET, POST, PUT and DELETE are supported' unless [:get, :post, :put, :delete].include?(method)
