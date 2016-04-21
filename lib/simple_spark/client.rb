@@ -28,7 +28,7 @@ module SimpleSpark
       path = opts[:path]
       body_values = opts[:body_values] || {}
       query_params = opts[:query_params] || {}
-      extract_results = opts[:extract_results] || true
+      extract_results = opts[:extract_results].nil? ? true : opts[:extract_results]
 
       fail Exceptions::InvalidConfiguration.new(method: method), 'Only GET, POST, PUT and DELETE are supported' unless [:get, :post, :put, :delete].include?(method)
 
@@ -51,7 +51,7 @@ module SimpleSpark
         if extract_results
           response_body['results'] ? response_body['results'] : true
         else
-          response
+          response_body
         end
       end
     end
@@ -71,6 +71,10 @@ module SimpleSpark
       defaults.merge!('X-MSYS-SUBACCOUNT' => @subaccount_id) if @subaccount_id
       defaults.merge!(@headers) if @headers
       defaults
+    end
+
+    def metrics
+      Endpoints::Metrics.new(self)
     end
 
     def inbound_domains
