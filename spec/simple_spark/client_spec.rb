@@ -52,5 +52,44 @@ describe SimpleSpark::Client do
     it 'will raise when headers is not a Hash' do
       expect { SimpleSpark::Client.new(api_key: 'mykey', headers: 'wrong') }.to raise_error(SimpleSpark::Exceptions::InvalidConfiguration, 'The headers options provided must be a valid Hash')
     end
+
+    context 'endpoints' do
+      let(:client) { SimpleSpark::Client.new(api_key: 'mykey') }
+
+      context 'metrics' do
+        it 'is included' do
+          expect(client.metrics.class).to eq(SimpleSpark::Endpoints::Metrics)
+        end
+      end
+
+      context 'inbound_domains' do
+        specify { expect(client.inbound_domains.class).to eq(SimpleSpark::Endpoints::InboundDomains) }
+      end
+
+      context 'message_events' do
+        specify { expect(client.message_events.class).to eq(SimpleSpark::Endpoints::MessageEvents) }
+      end
+
+      context 'relay_webhooks' do
+        specify { expect(client.relay_webhooks.class).to eq(SimpleSpark::Endpoints::RelayWebhooks) }
+      end
+
+      context 'sending_domains' do
+        specify { expect(client.sending_domains.class).to eq(SimpleSpark::Endpoints::SendingDomains) }
+      end
+
+      context 'templates' do
+        specify { expect(client.templates.class).to eq(SimpleSpark::Endpoints::Templates) }
+      end
+
+      context 'transmissions' do
+        specify { expect(client.transmissions.class).to eq(SimpleSpark::Endpoints::Transmissions) }
+      end
+
+      context 'webhooks' do
+        specify { expect(client.webhooks.class).to eq(SimpleSpark::Endpoints::Webhooks) }
+      end
+
+    end
   end
 end
