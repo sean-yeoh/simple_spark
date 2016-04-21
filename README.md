@@ -102,7 +102,13 @@ simple_spark.metrics.discoverability_links
 Summary of metrics
 
 ```ruby
-simple_spark.metrics.deliverability_metrics_summary(from: '2013-04-20T07:12', to: '2018-04-20T07:12', metrics: 'count_accepted', timezone: 'America/New_York')
+properties = {
+  from: '2013-04-20T07:12',
+  to: '2018-04-20T07:12',
+  metrics: 'count_accepted',
+  timezone: 'America/New_York'
+}
+simple_spark.metrics.deliverability_metrics_summary(properties)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/metrics/discoverability-links/deliverability-metrics-summary" target="_blank">see SparkPost API Documentation</a>
@@ -112,7 +118,13 @@ simple_spark.metrics.deliverability_metrics_summary(from: '2013-04-20T07:12', to
 Metrics grouped by Domain
 
 ```ruby
-simple_spark.metrics.deliverability_metrics_by_domain(from: '2013-04-20T07:12', to: '2018-04-20T07:12', metrics: 'count_accepted', timezone: 'America/New_York')
+properties = {
+  from: '2013-04-20T07:12',
+  to: '2018-04-20T07:12',
+  metrics: 'count_accepted',
+  timezone: 'America/New_York'
+}
+simple_spark.metrics.deliverability_metrics_by_domain(properties)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/metrics/deliverability-metrics/deliverability-metrics-by-domain" target="_blank">see SparkPost API Documentation</a>
@@ -122,7 +134,13 @@ simple_spark.metrics.deliverability_metrics_by_domain(from: '2013-04-20T07:12', 
 Metrics grouped by Sending Domain
 
 ```ruby
-simple_spark.metrics.deliverability_metrics_by_sending_domain(from: '2013-04-20T07:12', to: '2018-04-20T07:12', metrics: 'count_accepted', timezone: 'America/New_York')
+properties = {
+  from: '2013-04-20T07:12',
+  to: '2018-04-20T07:12',
+  metrics: 'count_accepted',
+  timezone: 'America/New_York'
+}
+simple_spark.metrics.deliverability_metrics_by_sending_domain(properties)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/metrics/deliverability-metrics/deliverability-metrics-by-sending-domain" target="_blank">see SparkPost API Documentation</a>
@@ -132,7 +150,13 @@ simple_spark.metrics.deliverability_metrics_by_sending_domain(from: '2013-04-20T
 Metrics grouped by Subaccount
 
 ```ruby
-simple_spark.metrics.deliverability_metrics_by_subaccount(from: '2013-04-20T07:12', to: '2018-04-20T07:12', metrics: 'count_accepted', timezone: 'America/New_York')
+properties = {
+  from: '2013-04-20T07:12',
+  to: '2018-04-20T07:12',
+  metrics: 'count_accepted',
+  timezone: 'America/New_York'
+}
+simple_spark.metrics.deliverability_metrics_by_subaccount(properties)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/metrics/deliverability-metrics/deliverability-metrics-by-subaccount" target="_blank">see SparkPost API Documentation</a>
@@ -142,7 +166,13 @@ simple_spark.metrics.deliverability_metrics_by_subaccount(from: '2013-04-20T07:1
 Metrics grouped by Campaign
 
 ```ruby
-simple_spark.metrics.deliverability_metrics_by_campaign(from: '2013-04-20T07:12', to: '2018-04-20T07:12', metrics: 'count_accepted', timezone: 'America/New_York')
+properties = {
+  from: '2013-04-20T07:12',
+  to: '2018-04-20T07:12',
+  metrics: 'count_accepted',
+  timezone: 'America/New_York'
+}
+simple_spark.metrics.deliverability_metrics_by_campaign(properties)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/metrics/deliverability-metrics/deliverability-metrics-by-campaign" target="_blank">see SparkPost API Documentation</a>
@@ -152,7 +182,13 @@ simple_spark.metrics.deliverability_metrics_by_campaign(from: '2013-04-20T07:12'
 Metrics grouped by Template
 
 ```ruby
-simple_spark.metrics.deliverability_metrics_by_template(from: '2013-04-20T07:12', to: '2018-04-20T07:12', metrics: 'count_accepted', timezone: 'America/New_York')
+properties = {
+  from: '2013-04-20T07:12',
+  to: '2018-04-20T07:12',
+  metrics: 'count_accepted',
+  timezone: 'America/New_York'
+}
+simple_spark.metrics.deliverability_metrics_by_template(properties)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/metrics/deliverability-metrics/deliverability-metrics-by-template" target="_blank">see SparkPost API Documentation</a>
@@ -243,10 +279,15 @@ simple_spark.subaccounts.list
 Create a new Subaccount
 
 ```ruby
-simple_spark.subaccounts.create({ "name": "Sparkle Ponies", "key_label": "API Key for Sparkle Ponies Subaccount", "key_grants": ["smtp/inject", "sending_domains/manage", "message_events/view", "suppression_lists/manage"] })
+properties = {
+  name: 'Sparkle Ponies', key_label: 'API Key for Sparkle Ponies Subaccount',
+
+  key_grants: ['smtp/inject', 'sending_domains/manage', 'message_events/view', 'suppression_lists/manage']
+}
+simple_spark.subaccounts.create(properties)
 ```
 
-<a href="hhttps://developers.sparkpost.com/api/#/reference/subaccounts/subaccounts-collection/create-new-subaccount" target="_blank">see SparkPost API Documentation</a>
+<a href="https://developers.sparkpost.com/api/#/reference/subaccounts/subaccounts-collection/create-new-subaccount" target="_blank">see SparkPost API Documentation</a>
 
 #### Retrieve
 
