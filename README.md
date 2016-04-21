@@ -281,7 +281,6 @@ Create a new Subaccount
 ```ruby
 properties = {
   name: 'Sparkle Ponies', key_label: 'API Key for Sparkle Ponies Subaccount',
-
   key_grants: ['smtp/inject', 'sending_domains/manage', 'message_events/view', 'suppression_lists/manage']
 }
 simple_spark.subaccounts.create(properties)
