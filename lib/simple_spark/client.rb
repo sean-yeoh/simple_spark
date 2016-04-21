@@ -4,12 +4,13 @@ require 'json'
 
 module SimpleSpark
   class Client
-    def initialize(options = {})
-      @api_key = options[:api_key] || ENV['SPARKPOST_API_KEY']
-      @api_host = options[:api_host] || 'https://api.sparkpost.com'
-      @base_path = options[:base_path] || '/api/v1/'
-      @subaccount_id = options[:subaccount_id]
-      @headers = options[:headers]
+    def initialize(opts = {})
+      opts = opts.with_indifferent_access
+      @api_key = opts[:api_key] || ENV['SPARKPOST_API_KEY']
+      @api_host = opts[:api_host] || 'https://api.sparkpost.com'
+      @base_path = opts[:base_path] || '/api/v1/'
+      @subaccount_id = opts[:subaccount_id]
+      @headers = opts[:headers]
 
       fail Exceptions::InvalidConfiguration.new, 'You must provide a SparkPost API key' unless @api_key
       fail Exceptions::InvalidConfiguration.new, 'You must provide a SparkPost API host' unless @api_host # this should never occur unless the default above is changed
@@ -18,12 +19,13 @@ module SimpleSpark
 
       rails_development = true & defined?(Rails) && Rails.env.development?
 
-      @debug = options[:debug].nil? ? rails_development : options[:debug]
+      @debug = opts[:debug].nil? ? rails_development : opts[:debug]
 
       @session = Excon.new(@api_host, debug: @debug)
     end
 
     def call(opts)
+      opts = opts.with_indifferent_access
       method = opts[:method]
       path = opts[:path]
       body_values = opts[:body_values] || {}
