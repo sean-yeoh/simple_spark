@@ -9,4 +9,5 @@ require 'simple_spark/endpoints/sending_domains'
 require 'simple_spark/endpoints/message_events'
 require 'simple_spark/endpoints/webhooks'
 require 'simple_spark/endpoints/relay_webhooks'
+require 'simple_spark/endpoints/subaccounts'
 

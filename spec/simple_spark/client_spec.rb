@@ -57,9 +57,11 @@ describe SimpleSpark::Client do
       let(:client) { SimpleSpark::Client.new(api_key: 'mykey') }
 
       context 'metrics' do
-        it 'is included' do
-          expect(client.metrics.class).to eq(SimpleSpark::Endpoints::Metrics)
-        end
+        specify { expect(client.metrics.class).to eq(SimpleSpark::Endpoints::Metrics) }
+      end
+
+      context 'subaccounts' do
+        specify { expect(client.subaccounts.class).to eq(SimpleSpark::Endpoints::Subaccounts) }
       end
 
       context 'inbound_domains' do

@@ -77,6 +77,10 @@ module SimpleSpark
       Endpoints::Metrics.new(self)
     end
 
+    def subaccounts
+      Endpoints::Subaccounts.new(self)
+    end
+
     def inbound_domains
       Endpoints::InboundDomains.new(self)
     end
