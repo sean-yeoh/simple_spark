@@ -225,6 +225,51 @@ simple_spark.transmissions.create(properties)
 
 <a href="https://developers.sparkpost.com/api/#/reference/transmissions/create" target="_blank">see SparkPost API Documentation</a>
 
+
+### Subaccounts
+
+#### List
+
+List all Subaccounts
+
+```ruby
+simple_spark.subaccounts.list
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/subaccounts/subaccounts-collection/list-subaccounts" target="_blank">see SparkPost API Documentation</a>
+
+#### Create
+
+Create a new Subaccount
+
+```ruby
+simple_spark.subaccounts.create({ "name": "Sparkle Ponies", "key_label": "API Key for Sparkle Ponies Subaccount", "key_grants": ["smtp/inject", "sending_domains/manage", "message_events/view", "suppression_lists/manage"] })
+```
+
+<a href="hhttps://developers.sparkpost.com/api/#/reference/subaccounts/subaccounts-collection/create-new-subaccount" target="_blank">see SparkPost API Documentation</a>
+
+#### Retrieve
+
+Retrieves a Subaccount by its id
+
+```ruby
+simple_spark.subaccounts.retrieve(123)
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/subaccounts/subaccounts-entity/list-specific-subaccount" target="_blank">see SparkPost API Documentation</a>
+
+#### Update
+
+Updates a Subaccount with new values
+
+```ruby
+properties = { name: "new name" }
+simple_spark.subaccounts.update('mail.mydomain.com', properties)
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/subaccounts/subaccounts-entity/edit-a-subaccount" target="_blank">see SparkPost API Documentation</a>
+
+
 ### Messsage Events
 
 #### Samples
@@ -580,6 +625,11 @@ simple_spark.templates.delete(yourtemplateid)
 <a href="https://developers.sparkpost.com/api/#/reference/templates/delete" target="_blank">see SparkPost API Documentation</a>
 
 ## Changelog
+
+### 0.0.5
+
+- Subaccounts endpoint added
+- Metrics main endpoints added
 
 ### 0.0.4
 
