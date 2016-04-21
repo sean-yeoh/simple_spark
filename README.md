@@ -666,6 +666,10 @@ simple_spark.templates.delete(yourtemplateid)
 
 ## Changelog
 
+### 0.0.6
+
+Fixed accidental bug
+
 ### 0.0.5
 
 - Subaccounts endpoint added

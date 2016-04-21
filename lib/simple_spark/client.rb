@@ -5,7 +5,6 @@ require 'json'
 module SimpleSpark
   class Client
     def initialize(opts = {})
-      opts = opts.with_indifferent_access
       @api_key = opts[:api_key] || ENV['SPARKPOST_API_KEY']
       @api_host = opts[:api_host] || 'https://api.sparkpost.com'
       @base_path = opts[:base_path] || '/api/v1/'
@@ -25,7 +24,6 @@ module SimpleSpark
     end
 
     def call(opts)
-      opts = opts.with_indifferent_access
       method = opts[:method]
       path = opts[:path]
       body_values = opts[:body_values] || {}
