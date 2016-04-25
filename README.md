@@ -86,6 +86,21 @@ Should you have any need to override the headers that are sent by default, then 
 simple_spark = SimpleSpark::Client.new(api_key: 'your_api_key', headers: { 'NewSparkpostHeader' => 'hello'})
 ```
 
+### Exceptions
+
+SimpleSpark wraps all the common errors from the SparkPost API
+
+If the API is unresponsive a GatewayTimeoutExceeded will be raised
+
+Status 400 raises Exceptions::BadRequest
+
+Status 404 raises Exceptions::NotFound
+
+Status 422 raises Exceptions::UnprocessableEntity
+
+Status 420 raises Exceptions::ThrottleLimitExceeded
+
+Other response status codes raise Exceptions::UnprocessableEntity
 
 ### Metrics
 

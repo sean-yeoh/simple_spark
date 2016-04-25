@@ -39,6 +39,9 @@ module SimpleSpark
       response = @session.send(method.to_s, params)
 
       process_response(response, extract_results)
+
+    rescue Excon::Errors::Timeout
+      raise Exceptions::GatewayTimeoutExceeded
     end
 
     def process_response(response, extract_results)

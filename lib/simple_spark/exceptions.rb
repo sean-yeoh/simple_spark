@@ -35,5 +35,6 @@ module SimpleSpark
     class NotFound < Error; end
     class UnprocessableEntity < Error; end
     class ThrottleLimitExceeded < Error; end
+    class GatewayTimeoutExceeded < Error; end
   end
 end
