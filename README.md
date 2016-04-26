@@ -711,6 +711,10 @@ simple_spark.templates.delete(yourtemplateid)
 
 ## Changelog
 
+### 0.0.10
+
+- Bug in 504 exception syntax
+
 ### 0.0.9
 
 - Breaking change: 204 responses now return an empty hash t simplify consuming code
