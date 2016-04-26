@@ -1,15 +1,20 @@
 require 'rubygems'
 require 'excon'
 require 'json'
+require 'logger'
 
 module SimpleSpark
   class Client
+    attr_reader :logger
+
     def initialize(opts = {})
       @api_key = opts[:api_key] || ENV['SPARKPOST_API_KEY']
       @api_host = opts[:api_host] || 'https://api.sparkpost.com'
       @base_path = opts[:base_path] || '/api/v1/'
       @subaccount_id = opts[:subaccount_id]
       @headers = opts[:headers]
+
+      @logger = opts[:logger] || SimpleSpark::Client.default_logger
 
       fail Exceptions::InvalidConfiguration.new, 'You must provide a SparkPost API key' unless @api_key
       fail Exceptions::InvalidConfiguration.new, 'You must provide a SparkPost API host' unless @api_host # this should never occur unless the default above is changed
@@ -36,7 +41,20 @@ module SimpleSpark
       params = { path: path, headers: headers }
       params[:body] = body_values.to_json unless body_values.empty?
       params[:query] = query_params unless query_params.empty?
+
+      if @debug
+        logger.debug("Calling #{method}")
+        logger.debug(params)
+      end
+
       response = @session.send(method.to_s, params)
+
+      if @debug
+        logger.debug("Response #{response.status}")
+        logger.debug(response)
+      end
+
+      fail Exceptions::GatewayTimeoutExceeded('Received 504 from SparkPost API') if response.status == 504
 
       process_response(response, extract_results)
 
@@ -45,14 +63,15 @@ module SimpleSpark
     end
 
     def process_response(response, extract_results)
-      return true if response.status == 204 || response.body.nil? || response.body == ''
+      logger.warn('Response had an empty body') if (response.body.nil? || response.body == '') && response.status != 204
+      return {} if response.status == 204 || response.body.nil? || response.body == ''
 
       response_body = JSON.parse(response.body)
       if response_body['errors']
         Exceptions::Error.fail_with_exception_for_status(response.status, response_body['errors'])
       else
         if extract_results
-          response_body['results'] ? response_body['results'] : true
+          response_body['results'] ? response_body['results'] : {}
         else
           response_body
         end
@@ -74,6 +93,12 @@ module SimpleSpark
       defaults.merge!('X-MSYS-SUBACCOUNT' => @subaccount_id) if @subaccount_id
       defaults.merge!(@headers) if @headers
       defaults
+    end
+
+    def self.default_logger
+      logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
+      logger.progname = 'simple_spark'
+      logger
     end
 
     def metrics
