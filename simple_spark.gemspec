@@ -18,18 +18,6 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'bundler', '~> 1.6'
-  spec.add_development_dependency 'rake', '~> 0.9.6'
-
-  spec.add_development_dependency 'rspec', '~> 3.4.0'
-  spec.add_development_dependency 'rspec-nc', '~> 0'
-  spec.add_development_dependency 'guard', '~> 2.13'
-  spec.add_development_dependency 'guard-rspec', '~> 4.6.4'
-  spec.add_development_dependency 'pry', '~> 0'
-  spec.add_development_dependency 'pry-remote', '~> 0'
-  spec.add_development_dependency 'pry-nav', '~> 0'
-  spec.add_development_dependency 'climate_control', '~> 0'
-
   spec.add_dependency 'json', '>= 1.7.7', '< 2.0'
   spec.add_dependency 'excon', '>= 0.16.0', '< 1.0'
 end
