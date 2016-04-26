@@ -4,11 +4,6 @@ source 'https://rubygems.org'
 gemspec
 
 group :development do
-  gem 'bundler', '~> 1.6'
-  gem 'rake', '~> 0.9.6'
-
-  gem 'rspec', '~> 3.4.0'
-  gem 'rspec-nc', '~> 0'
   gem 'guard', '~> 2.13'
   gem 'guard-rspec', '~> 4.6.4'
   gem 'pry', '~> 0'
