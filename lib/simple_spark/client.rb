@@ -1,15 +1,20 @@
 require 'rubygems'
 require 'excon'
 require 'json'
+require 'logger'
 
 module SimpleSpark
   class Client
+    attr_reader :logger
+
     def initialize(opts = {})
       @api_key = opts[:api_key] || ENV['SPARKPOST_API_KEY']
       @api_host = opts[:api_host] || 'https://api.sparkpost.com'
       @base_path = opts[:base_path] || '/api/v1/'
       @subaccount_id = opts[:subaccount_id]
       @headers = opts[:headers]
+
+      @logger = opts[:logger] || SimpleSpark::Client.default_logger
 
       fail Exceptions::InvalidConfiguration.new, 'You must provide a SparkPost API key' unless @api_key
       fail Exceptions::InvalidConfiguration.new, 'You must provide a SparkPost API host' unless @api_host # this should never occur unless the default above is changed
@@ -36,7 +41,19 @@ module SimpleSpark
       params = { path: path, headers: headers }
       params[:body] = body_values.to_json unless body_values.empty?
       params[:query] = query_params unless query_params.empty?
+
+      if @debug
+        logger.debug("Calling #{method}")
+        logger.debug(params)
+      end
+
       response = @session.send(method.to_s, params)
+
+      if @debug
+        logger.warn('Response had an empty body') if (response.body.nil? || response.body == '') && response.status != 204
+        logger.debug("Response #{response.status}")
+        logger.debug(response)
+      end
 
       process_response(response, extract_results)
 
@@ -74,6 +91,12 @@ module SimpleSpark
       defaults.merge!('X-MSYS-SUBACCOUNT' => @subaccount_id) if @subaccount_id
       defaults.merge!(@headers) if @headers
       defaults
+    end
+
+    def self.default_logger
+      logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
+      logger.progname = 'simple_spark'
+      logger
     end
 
     def metrics
