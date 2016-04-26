@@ -45,7 +45,7 @@ module SimpleSpark
     end
 
     def process_response(response, extract_results)
-      return true if response.status == 204
+      return true if response.status == 204 || response.body.nil? || response.body == ''
 
       response_body = JSON.parse(response.body)
       if response_body['errors']
