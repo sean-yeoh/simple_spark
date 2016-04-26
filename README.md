@@ -72,6 +72,12 @@ Setting debug to true will cause [Excon](https://github.com/excon/excon) to outp
 
 This will default to true if you are running under Rails and are in a development environment, otherwise it will default to false (setting other values to nil will cause them to use their defaults)
 
+You can also pass a Logger into the client options to have SimpleSpark log there. By default Rails.logger will be used when runnign under Rails, and STDOUT will be used otherwise
+
+```ruby
+simple_spark = SimpleSpark::Client.new(api_key: 'your_api_key', debug: true, logger: Rails.logger)
+```
+
 #### Subaccounts
 
 By setting subaccount_id on your client you are telling Simple Spark to use that subaccount for all calls made on this instance of the client.
@@ -90,7 +96,7 @@ simple_spark = SimpleSpark::Client.new(api_key: 'your_api_key', headers: { 'NewS
 
 SimpleSpark wraps all the common errors from the SparkPost API
 
-If the API is unresponsive a GatewayTimeoutExceeded will be raised
+If the API takes too long to respond (times out in Excon) a GatewayTimeoutExceeded will be raised
 
 Status 400 raises Exceptions::BadRequest
 
@@ -101,6 +107,8 @@ Status 422 raises Exceptions::UnprocessableEntity
 Status 420 raises Exceptions::ThrottleLimitExceeded
 
 Other response status codes raise Exceptions::UnprocessableEntity
+
+In some cases it is possible to send too fast for the API (apparently) to handle , in this case the SparkPost API returns a 504 status with an empty body. This is raised by SimpleSpark as Exceptions::GatewayTimeoutExceeded
 
 ### Metrics
 
@@ -703,17 +711,22 @@ simple_spark.templates.delete(yourtemplateid)
 
 ## Changelog
 
+### 0.0.9
+
+- Breaking change: 204 responses now return an empty hash t simplify consuming code
+- Added logging, if debug is set then SimpleSpark will log its options and calls in addition to Excon.
+
 ### 0.0.8
 
-Improved exception handling
+- Improved exception handling
 
 ### 0.0.7
 
-Added Time Series to Metrics
+- Added Time Series to Metrics
 
 ### 0.0.6
 
-Fixed accidental bug
+- Fixed accidental bug
 
 ### 0.0.5
 

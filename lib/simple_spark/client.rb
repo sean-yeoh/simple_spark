@@ -50,10 +50,11 @@ module SimpleSpark
       response = @session.send(method.to_s, params)
 
       if @debug
-        logger.warn('Response had an empty body') if (response.body.nil? || response.body == '') && response.status != 204
         logger.debug("Response #{response.status}")
         logger.debug(response)
       end
+
+      fail Exceptions::GatewayTimeoutExceeded('Received 504 from SparkPost API') if response.status == 504
 
       process_response(response, extract_results)
 
@@ -62,14 +63,15 @@ module SimpleSpark
     end
 
     def process_response(response, extract_results)
-      return true if response.status == 204 || response.body.nil? || response.body == ''
+      logger.warn('Response had an empty body') if (response.body.nil? || response.body == '') && response.status != 204
+      return {} if response.status == 204 || response.body.nil? || response.body == ''
 
       response_body = JSON.parse(response.body)
       if response_body['errors']
         Exceptions::Error.fail_with_exception_for_status(response.status, response_body['errors'])
       else
         if extract_results
-          response_body['results'] ? response_body['results'] : true
+          response_body['results'] ? response_body['results'] : {}
         else
           response_body
         end
