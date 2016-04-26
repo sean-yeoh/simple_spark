@@ -711,6 +711,10 @@ simple_spark.templates.delete(yourtemplateid)
 
 ## Changelog
 
+### 0.0.11
+
+- long day ... bug in 504 exception syntax came back with merge
+
 ### 0.0.10
 
 - Bug in 504 exception syntax

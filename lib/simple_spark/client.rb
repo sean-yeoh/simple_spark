@@ -54,7 +54,7 @@ module SimpleSpark
         logger.debug(response)
       end
 
-      fail Exceptions::GatewayTimeoutExceeded('Received 504 from SparkPost API') if response.status == 504
+      fail Exceptions::GatewayTimeoutExceeded, 'Received 504 from SparkPost API' if response.status == 504
 
       process_response(response, extract_results)
 
