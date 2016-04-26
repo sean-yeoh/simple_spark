@@ -703,6 +703,10 @@ simple_spark.templates.delete(yourtemplateid)
 
 ## Changelog
 
+### 0.0.8
+
+Improved exception handling
+
 ### 0.0.7
 
 Added Time Series to Metrics
