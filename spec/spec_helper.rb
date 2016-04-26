@@ -1,4 +1,3 @@
-require 'pry'
 require 'simple_spark'
 require 'climate_control'
 
