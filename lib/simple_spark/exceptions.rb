@@ -25,7 +25,8 @@ module SimpleSpark
           '400' => Exceptions::BadRequest,
           '404' => Exceptions::NotFound,
           '422' => Exceptions::UnprocessableEntity,
-          '420' => Exceptions::ThrottleLimitExceeded
+          '420' => Exceptions::ThrottleLimitExceeded,
+          '429' => Exceptions::ThrottleLimitExceeded
         }
       end
     end

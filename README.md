@@ -104,7 +104,7 @@ Status 404 raises Exceptions::NotFound
 
 Status 422 raises Exceptions::UnprocessableEntity
 
-Status 420 raises Exceptions::ThrottleLimitExceeded
+Status 420/429 raises Exceptions::ThrottleLimitExceeded
 
 Other response status codes raise Exceptions::UnprocessableEntity
 
