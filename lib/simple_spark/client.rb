@@ -97,7 +97,7 @@ module SimpleSpark
 
     def self.default_logger
       logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
-      logger.progname = 'simple_spark'
+      logger.progname = 'simple_spark' if logger.respond_to?(:progname=)
       logger
     end
 
