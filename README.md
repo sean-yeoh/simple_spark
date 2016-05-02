@@ -711,6 +711,10 @@ simple_spark.templates.delete(yourtemplateid)
 
 ## Changelog
 
+### 0.012
+
+Check :progname before assigning
+
 ### 0.0.11
 
 - long day ... bug in 504 exception syntax came back with merge
