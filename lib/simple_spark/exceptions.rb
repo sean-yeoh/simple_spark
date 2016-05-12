@@ -16,7 +16,7 @@ module SimpleSpark
 
       def self.fail_with_exception_for_status(status, errors)
         exception = status_codes[status.to_s] || status_codes['default']
-        fail exception.new(errors), errors.map { |e| "#{e['message']}" + (e['description'] ? ": #{e['description']}" : '') }.join(', ')
+        fail exception.new(errors), errors.map { |e| "#{e['message']} #{status} " + (e['description'] ? ": #{e['description']}" : '') }.join(', ')
       end
 
       def self.status_codes

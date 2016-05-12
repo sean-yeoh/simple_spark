@@ -711,6 +711,10 @@ simple_spark.templates.delete(yourtemplateid)
 
 ## Changelog
 
+### 0.013
+
+Adding status error code to message as SparkPost uses a wide range of status codes
+
 ### 0.012
 
 Check :progname before assigning
