@@ -4,11 +4,11 @@
 
 ## Update from SparkPost
 
-As SparkPost have now stopped development on their own gem, and have recommended this one as being a better alternative, bumping version to 1.0.0 - the code has been running in production for a while now and seems stable and near feature complete.
-
 Posted in the SparkPost Announcements channel on 17th May 2016
 
-> Due to incredible support and contributions from the community, we will be discontinuing support of the official SparkPost ruby client library as of May 17, 2016. If you’re looking for an alternative, take a look at some of these repositories: https://github.com/search?l=Ruby&q=sparkpost&type=Repositories&utf8=%E2%9C%93, including ​*simple_spark*​ by @jakcharlton
+> Due to incredible support and contributions from the community, we will be discontinuing support of the official SparkPost ruby client library as of May 17, 2016.
+
+As SparkPost have now stopped development on their own gem, and have recommended this one as being a better alternative, bumping version to 1.0.0 - the code has been running in production for a while now and seems stable and near feature complete.
 
 ## Installation
 
@@ -34,11 +34,9 @@ $ gem install simple_spark
 
 ### Why?
 
-The official gem was somewhat lacking in functionality, though with the demise of Mandrill it seems SparkPost has decided to restart development on it.
+The official gem was somewhat lacking in functionality, though with the demise of Mandrill it seems SparkPost decided to restart development on it, they have now abandoned that as of 17th May 2016
 
-But, not being in a mood to wait, and as we would have to write wrappers around all the functions we would need anyway, it seemed much easier to write the wrapper as a gem and allow others to use it too.
-
-Development on the offical gem steams ahead, but I still prefer the more 'ruby-like' nature of this approach and the lack of such tight depenedency on the Sparkpost API
+As we would have to write wrappers around all the functions we would need for our app to use SparkPost anyway, it seemed much easier to write the wrapper as a gem and allow others to use it too.
 
 ### Status
 
@@ -770,6 +768,8 @@ Check :progname before assigning
 - Added Headers support to client
 
 ## Contributing
+
+Passing tests are encouraged going forwards, and generally code should follow most of the standard rules that Rubocop checks for.
 
 1. Fork it ( https://github.com/leadmachineapp/simple_spark/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
