@@ -2,7 +2,13 @@
 
 [![Build Status](https://travis-ci.org/leadmachineapp/simple_spark.png?branch=master)](https://travis-ci.org/leadmachineapp/simple_spark) [![Gem Version](https://badge.fury.io/rb/simple_spark.svg)](https://badge.fury.io/rb/simple_spark)
 
-This gem is an alternative to the [official Ruby gem](https://github.com/SparkPost/ruby-sparkpost) provided by [SparkPost](http://www.sparkpost.com)
+## Update from SparkPost
+
+As SparkPost have now stopped development on their own gem, and have recommended this one as being a better alternative, bumping version to 1.0.0 - the code has been running in production for a while now and seems stable and near feature complete.
+
+Posted in the SparkPost Announcements channel on 17th May 2016
+
+> Due to incredible support and contributions from the community, we will be discontinuing support of the official SparkPost ruby client library as of May 17, 2016. If you’re looking for an alternative, take a look at some of these repositories: https://github.com/search?l=Ruby&q=sparkpost&type=Repositories&utf8=%E2%9C%93, including ​*simple_spark*​ by @jakcharlton
 
 ## Installation
 
@@ -710,6 +716,10 @@ simple_spark.templates.delete(yourtemplateid)
 <a href="https://developers.sparkpost.com/api/#/reference/templates/delete" target="_blank">see SparkPost API Documentation</a>
 
 ## Changelog
+
+### 1.0.0
+
+As SparkPost have now stopped development on their own gem, and have recommended this one as being a better alternative, bumping version to 1.0.0 - the code has been running in production for a while now and seems stable and near feature complete.
 
 ### 0.013
 
