@@ -25,7 +25,10 @@ module SimpleSpark
 
       @debug = opts[:debug].nil? ? rails_development : opts[:debug]
 
-      @session = Excon.new(@api_host, debug: @debug)
+      # switch debug params, allow for old and new parameters and supress Excon warning
+      debug_options = Excon::VALID_REQUEST_KEYS.any? { |k| k == :debug } ? { debug: @debug } : { debug_request: @debug, debug_response: @debug }
+
+      @session = Excon.new(@api_host, debug_options)
     end
 
     def call(opts)

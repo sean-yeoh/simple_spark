@@ -715,15 +715,19 @@ simple_spark.templates.delete(yourtemplateid)
 
 ## Changelog
 
+### 1.0.1
+
+Suppress Excon warning for using :debug parameter
+
 ### 1.0.0
 
 As SparkPost have now stopped development on their own gem, and have recommended this one as being a better alternative, bumping version to 1.0.0 - the code has been running in production for a while now and seems stable and near feature complete.
 
-### 0.013
+### 0.0.13
 
 Adding status error code to message as SparkPost uses a wide range of status codes
 
-### 0.012
+### 0.0.12
 
 Check :progname before assigning
 
