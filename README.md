@@ -715,6 +715,10 @@ simple_spark.templates.delete(yourtemplateid)
 
 ## Changelog
 
+### 1.0.2
+
+Add sparkpost error code into exception message to allow more specific error handling
+
 ### 1.0.1
 
 Suppress Excon warning for using :debug parameter
