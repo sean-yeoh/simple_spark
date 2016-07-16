@@ -20,7 +20,7 @@ module SimpleSpark
       # @param domain_name [String] the domain name to create
       # @note See: https://developers.sparkpost.com/api/#/reference/inbound-domains/create-and-list
       def create(domain_name)
-        @client.call(method: :post, path: 'inbound-domains', query_values: { domain: domain_name })
+        @client.call(method: :post, path: 'inbound-domains', body_values: { domain: domain_name })
       end
 
       # Retrieve an inbound domain
