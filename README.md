@@ -715,6 +715,11 @@ simple_spark.templates.delete(yourtemplateid)
 
 ## Changelog
 
+### 1.0.3
+
+Using JSON.generate instead of .to_json (https://github.com/leadmachineapp/simple_spark/pull/11)
+Fixing inbound domains bug (https://github.com/leadmachineapp/simple_spark/pull/9)
+
 ### 1.0.2
 
 Add sparkpost error code into exception message to allow more specific error handling
