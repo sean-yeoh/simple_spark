@@ -717,8 +717,8 @@ simple_spark.templates.delete(yourtemplateid)
 
 ### 1.0.3
 
-Using JSON.generate instead of .to_json (https://github.com/leadmachineapp/simple_spark/pull/11)
-Fixing inbound domains bug (https://github.com/leadmachineapp/simple_spark/pull/9)
+- Using JSON.generate instead of .to_json (https://github.com/leadmachineapp/simple_spark/pull/11)
+- Fixing inbound domains bug (https://github.com/leadmachineapp/simple_spark/pull/9)
 
 ### 1.0.2
 
