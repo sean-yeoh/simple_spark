@@ -139,5 +139,9 @@ module SimpleSpark
     def relay_webhooks
       Endpoints::RelayWebhooks.new(self)
     end
+
+    def suppression_list
+      Endpoints::SuppressionList.new(self)
+    end
   end
 end
