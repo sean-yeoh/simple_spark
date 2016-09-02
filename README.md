@@ -578,6 +578,59 @@ simple_spark.inbound_domains.delete('mail.mydomain.com')
 
 <a href="https://developers.sparkpost.com/api/#/reference/inbound-domains/retrieve-and-delete" target="_blank">see SparkPost API Documentation</a>
 
+### Supression List
+
+#### Search
+
+Find supression list entries
+
+```ruby
+params = {
+  from: '2013-04-20T07:12',
+  to: '2018-04-20T07:12'
+}
+simple_spark.suppression_list.create_or_update(params)
+```
+
+<a href="https://developers.sparkpost.com/api/suppression-list#suppression-list-search-get" target="_blank">see SparkPost API Documentation</a>
+
+#### Create or Update
+
+Bulk update supression list entries
+
+```ruby
+recipients = {
+  {
+    recipient: "rcpt_1@example.com",
+    transactional: true,
+    description: "User requested to not receive any transactional emails."
+  },
+  {
+    recipient: "rcpt_2@example.com",
+    non_transactional: true
+  }
+}
+simple_spark.suppression_list.create_or_update(recipients)
+```
+
+<a href="https://developers.sparkpost.com/api/suppression-list#suppression-list-bulk-insert-update-put" target="_blank">see SparkPost API Documentation</a>
+
+#### Retrieve
+
+```ruby
+simple_spark.suppression_list.retrieve("rcpt_1@example.com")
+```
+
+<a href="https://developers.sparkpost.com/api/suppression-list#suppression-list-retrieve,-delete-get" target="_blank">see SparkPost API Documentation</a>
+
+#### Delete
+
+```ruby
+simple_spark.suppression_list.delete("rcpt_1@example.com")
+```
+
+<a href="https://developers.sparkpost.com/api/suppression-list#suppression-list-retrieve,-delete-get" target="_blank">see SparkPost API Documentation</a>
+
 ### Relay Webhooks
 
 #### List
@@ -714,6 +767,10 @@ simple_spark.templates.delete(yourtemplateid)
 <a href="https://developers.sparkpost.com/api/#/reference/templates/delete" target="_blank">see SparkPost API Documentation</a>
 
 ## Changelog
+
+### 1.0.4
+
+- Add Supression List Endpoint
 
 ### 1.0.3
 
