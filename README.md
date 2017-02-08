@@ -599,17 +599,17 @@ simple_spark.suppression_list.create_or_update(params)
 Bulk update supression list entries
 
 ```ruby
-recipients = {
+recipients = [
   {
     recipient: "rcpt_1@example.com",
-    transactional: true,
+    type: "transactional",
     description: "User requested to not receive any transactional emails."
   },
   {
     recipient: "rcpt_2@example.com",
-    non_transactional: true
+    type: "non_transactional"
   }
-}
+]
 simple_spark.suppression_list.create_or_update(recipients)
 ```
 
