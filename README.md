@@ -311,7 +311,7 @@ simple_spark.transmissions.create(properties)
 #### Delete by campaign
 
 ```ruby
-simple_spark.transmission.delete_campaign("white-christmas")
+simple_spark.transmissions.delete_campaign("white-christmas")
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/transmissions/create" target="_blank">see SparkPost API Documentation</a>
