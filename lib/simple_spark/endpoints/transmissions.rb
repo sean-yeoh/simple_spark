@@ -54,7 +54,7 @@ module SimpleSpark
       end
       
       # Deletes all transmissions for a given campaign
-      # @param campaign_id [String] specifics the campaign to delete transmissions for
+      # @param campaign_id [String] specifies the campaign to delete transmissions for
       # @returns empty string
       # @note Endpoint returns empty response body with 204 status code
       def delete_campaign(campaign_id)
