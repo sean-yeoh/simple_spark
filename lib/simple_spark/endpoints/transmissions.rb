@@ -55,7 +55,7 @@ module SimpleSpark
       
       # Deletes all transmissions for a given campaign
       # @param campaign_id [String] specifics the campaign to delete transmissions for
-      # @returns nil
+      # @returns empty string
       # @note Endpoint returns empty response body with 204 status code
       def delete_campaign(campaign_id)
         @client.call(method: :delete, path: 'transmissions', query_values: { campaign_id: campaign_id })
