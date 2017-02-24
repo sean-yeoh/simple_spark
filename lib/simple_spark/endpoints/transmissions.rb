@@ -52,6 +52,14 @@ module SimpleSpark
         query_params[:template_id] = template_id if template_id
         @client.call(method: :get, path: 'transmissions', query_values: query_params)
       end
+      
+      # Deletes all transmissions for a given campaign
+      # @param campaign_id [String] specifics the campaign to delete transmissions for
+      # @returns nil
+      # @note Endpoint returns empty response body with 204 status code
+      def delete_campaign(campaign_id)
+        @client.call(method: :delete, path: 'transmissions', query_values: { campaign_id: campaign_id })
+      end
 
       # send_message to be reserved as a 'quick' helper method to avoid using hash for Create
       # alias_method :send_message, :create
