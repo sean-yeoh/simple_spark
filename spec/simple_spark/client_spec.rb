@@ -56,6 +56,10 @@ describe SimpleSpark::Client do
     context 'endpoints' do
       let(:client) { SimpleSpark::Client.new(api_key: 'mykey') }
 
+      context 'account' do
+        specify { expect(client.account.class).to eq(SimpleSpark::Endpoints::Account) }
+      end
+
       context 'metrics' do
         specify { expect(client.metrics.class).to eq(SimpleSpark::Endpoints::Metrics) }
       end
