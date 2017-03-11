@@ -114,6 +114,39 @@ Other response status codes raise Exceptions::UnprocessableEntity
 
 In some cases it is possible to send too fast for the API (apparently) to handle , in this case the SparkPost API returns a 504 status with an empty body. This is raised by SimpleSpark as Exceptions::GatewayTimeoutExceeded
 
+### Account
+
+#### Retrieve account information
+
+```ruby
+simple_spark.account.retrieve
+```
+
+The argument can be specified in a comma separated list. The only valid value is currently usage.
+
+```ruby
+simple_spark.account.retrieve("usage")
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/account/retrieve-get" target="_blank">see SparkPost API Documentation</a>
+
+#### Update account information
+
+```ruby
+properties = {
+  company_name: "SparkPost",
+  options: {
+    smtp_tracking_default: true,
+    rest_tracking_default: true,
+    transactional_unsub: true,
+    transactional_default: true
+  }
+}
+simple_spark.account.update(properties)
+```
+
+<a href="https://developers.sparkpost.com/api/#/reference/account/update-put" target="_blank">see SparkPost API Documentation</a>
+
 ### Metrics
 
 #### Discoverability Links
