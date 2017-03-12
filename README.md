@@ -807,6 +807,12 @@ simple_spark.templates.delete(yourtemplateid)
 
 ## Changelog
 
+### 1.0.5
+
+- Add Account API Endpoint
+- Add Delete Campaign
+- Bug fixes
+
 ### 1.0.4
 
 - Add Supression List Endpoint
