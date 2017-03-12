@@ -1,6 +1,7 @@
 require 'simple_spark/version'
 require 'simple_spark/client'
 require 'simple_spark/exceptions'
+require 'simple_spark/endpoints/account'
 require 'simple_spark/endpoints/metrics'
 require 'simple_spark/endpoints/transmissions'
 require 'simple_spark/endpoints/templates'

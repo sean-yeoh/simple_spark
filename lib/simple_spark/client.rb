@@ -104,6 +104,10 @@ module SimpleSpark
       logger
     end
 
+    def account
+      Endpoints::Account.new(self)
+    end
+
     def metrics
       Endpoints::Metrics.new(self)
     end
