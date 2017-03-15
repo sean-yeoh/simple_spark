@@ -522,7 +522,7 @@ simple_spark.sending_domains.list
 Create a new Sending Domain
 
 ```ruby
-simple_spark.sending_domains.create('mail.mydomain.com')
+simple_spark.sending_domains.create({domain: 'mail.mydomain.com'})
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/sending-domains/create-and-list" target="_blank">see SparkPost API Documentation</a>
@@ -560,7 +560,7 @@ token(s) against the stored token(s) for the specified sending domain.
 
 ```ruby
 properties = { "dkim_verify": true, "spf_verify": true }
-simple_spark.sending_domains.retrieve('mail.mydomain.com', properties)
+simple_spark.sending_domains.verify('mail.mydomain.com', properties)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/sending-domains/verify" target="_blank">see SparkPost API Documentation</a>
