@@ -628,7 +628,7 @@ params = {
   from: '2013-04-20T07:12',
   to: '2018-04-20T07:12'
 }
-simple_spark.suppression_list.create_or_update(params)
+simple_spark.suppression_list.search(params)
 ```
 
 <a href="https://developers.sparkpost.com/api/suppression-list#suppression-list-search-get" target="_blank">see SparkPost API Documentation</a>
