@@ -8,15 +8,20 @@ module SimpleSpark
     #   puts e.object # => { id: '1' }
     # end
     class Error < StandardError
-      attr_reader :object
+      attr_reader :object, :results
 
-      def initialize(object = nil)
+      def initialize(object = nil, results = {})
         @object = object
+        @results = results
+      end
+      
+      def transmission_id
+        results['id']
       end
 
-      def self.fail_with_exception_for_status(status, errors)
+      def self.fail_with_exception_for_status(status, errors, results)
         exception = status_codes[status.to_s] || status_codes['default']
-        fail exception.new(errors), errors.map { |e| "#{e['message']} #{status} (Error Code: #{e['code']})" + (e['description'] ? ": #{e['description']}" : '') }.join(', ')
+        fail exception.new(errors, results), errors.map { |e| "#{e['message']} #{status} (Error Code: #{e['code']})" + (e['description'] ? ": #{e['description']}" : '') }.join(', ')
       end
 
       def self.status_codes
