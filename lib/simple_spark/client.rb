@@ -71,7 +71,7 @@ module SimpleSpark
 
       response_body = JSON.parse(response.body)
       if response_body['errors']
-        Exceptions::Error.fail_with_exception_for_status(response.status, response_body['errors'])
+        Exceptions::Error.fail_with_exception_for_status(response.status, response_body['errors'], response_body['results'])
       else
         if extract_results
           response_body['results'] ? response_body['results'] : {}
