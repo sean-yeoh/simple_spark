@@ -807,6 +807,10 @@ simple_spark.templates.delete(yourtemplateid)
 
 ## Changelog
 
+### 1.0.6
+
+- Exceptions now return SparkPost results object too
+
 ### 1.0.5
 
 - Add Account API Endpoint
