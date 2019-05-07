@@ -852,7 +852,7 @@ Create a new Recipient list
 ```ruby
 properties = { "name" => "Small List",
                "recipients"=> [
-                 { 
+                 {
                    "address" => {
                      "email" => "somemail@somedomain.com"
                    }
@@ -900,6 +900,10 @@ simple_spark.recipient_lists.delete(your_list_id)
 
 ## Changelog
 
+
+### 1.0.9
+
+- Add Recipients List Endpoint
 
 ### 1.0.8
 
