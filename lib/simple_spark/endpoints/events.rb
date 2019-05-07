@@ -24,7 +24,7 @@ module SimpleSpark
       # @return [Array] a list of Event hash objects
       # @note https://developers.sparkpost.com/api/events/#events-get-search-for-message-events
       def search(params = {})
-        @client.call(method: :get, path: 'events', query_values: params)
+        @client.call(method: :get, path: 'events/message', query_values: params)
       end
     end
   end
