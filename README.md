@@ -426,6 +426,34 @@ simple_spark.message_events.search(campaign_ids: 'christmas-campaign, summer-cam
 
 <a href="https://developers.sparkpost.com/api/#/reference/message-events/events-samples" target="_blank">see SparkPost API Documentation</a>
 
+### Events
+
+#### Samples
+
+List an example of the event data that will be included in a response from the Events search endpoint
+
+```ruby
+simple_spark.events.samples
+```
+
+To limit to just some events
+
+```ruby
+simple_spark.events.samples('bounce')
+```
+
+<a href="https://developers.sparkpost.com/api/events/#events-get-events-samples" target="_blank">see SparkPost API Documentation</a>
+
+#### Search
+
+Perform a filtered search for event data. The response is sorted by descending timestamp. For full options you should consult the SparkPost API documentation
+
+```ruby
+simple_spark.events.search(campaign_ids: 'christmas-campaign, summer-campaign')
+```
+
+<a href="https://developers.sparkpost.com/api/events/#events-get-events-samples" target="_blank">see SparkPost API Documentation</a>
+
 ### Webhooks
 
 #### List
@@ -806,6 +834,11 @@ simple_spark.templates.delete(yourtemplateid)
 <a href="https://developers.sparkpost.com/api/#/reference/templates/delete" target="_blank">see SparkPost API Documentation</a>
 
 ## Changelog
+
+
+### 1.0.8
+
+- Add Events Endpoint
 
 ### 1.0.6
 

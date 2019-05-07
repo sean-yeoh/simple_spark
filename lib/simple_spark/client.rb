@@ -132,6 +132,10 @@ module SimpleSpark
       Endpoints::Transmissions.new(self)
     end
 
+    def events
+      Endpoints::Events.new(self)
+    end
+
     def message_events
       Endpoints::MessageEvents.new(self)
     end
