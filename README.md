@@ -833,6 +833,71 @@ simple_spark.templates.delete(yourtemplateid)
 
 <a href="https://developers.sparkpost.com/api/#/reference/templates/delete" target="_blank">see SparkPost API Documentation</a>
 
+### Recipient Lists
+
+#### List
+
+List all recipient lists
+
+```ruby
+simple_spark.recipient_lists.list
+```
+
+<a href="https://developers.sparkpost.com/api/recipient-lists/#recipient-lists-get-list-all-recipient-lists" target="_blank">see SparkPost API Documentation</a>
+
+#### Create
+
+Create a new Recipient list
+
+```ruby
+properties = { "name" => "Small List",
+               "recipients"=> [
+                 { 
+                   "address" => {
+                     "email" => "somemail@somedomain.com"
+                   }
+                 }
+               ]
+             }
+num_rcpt_errors = 1
+simple_spark.recipient_lists.create(properties, num_rcpt_errors)
+```
+
+<a href="https://developers.sparkpost.com/api/recipient-lists/#recipient-lists-post-create-a-recipient-list" target="_blank">see SparkPost API Documentation</a>
+
+#### Retrieve
+
+Retrieves a Recipient list by its ID
+
+```ruby
+show_recipients = true
+simple_spark.recipient_lists.retrieve(your_list_id, show_recipients)
+```
+
+<a href="https://developers.sparkpost.com/api/recipient-lists/#recipient-lists-get-retrieve-a-recipient-list" target="_blank">see SparkPost API Documentation</a>
+
+#### Update
+
+Updates a Recipient list with new values
+
+```ruby
+properties = { "name" => "New List Name" }
+simple_spark.recipient_lists.update(your_list_id, properties)
+```
+
+<a href="https://developers.sparkpost.com/api/recipient-lists/#recipient-lists-put-update-a-recipient-list" target="_blank">see SparkPost API Documentation</a>
+
+#### Delete
+
+Deletes a Recipient list permanently
+
+```ruby
+simple_spark.recipient_lists.delete(your_list_id)
+```
+
+<a href="https://developers.sparkpost.com/api/recipient-lists/#recipient-lists-delete-delete-a-recipient-list" target="_blank">see SparkPost API Documentation</a>
+
+
 ## Changelog
 
 

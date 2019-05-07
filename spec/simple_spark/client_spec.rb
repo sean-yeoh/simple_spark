@@ -100,6 +100,10 @@ describe SimpleSpark::Client do
         specify { expect(client.webhooks.class).to eq(SimpleSpark::Endpoints::Webhooks) }
       end
 
+      context 'recipient_lists' do
+        specify { expect(client.recipient_lists.class).to eq(SimpleSpark::Endpoints::RecipientLists) }
+      end
+
     end
   end
 end
