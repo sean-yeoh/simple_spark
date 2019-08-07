@@ -312,8 +312,10 @@ properties = {
     reply_to: 'Sales <sales@yourdomain.com>',
     headers: { 'X-Customer-CampaignID' => 'christmas_campaign' },
     text: 'Hi from {{sender}} ... this is a test, and here is your address {{address}}',
-    html: '<p>Hi from {{sender}}</p<p>This is a test</p>'
+    html: '<p>Hi from {{sender}}</p><p>This is a test</p>'
   }
+  # Or to use a template, change the content key to be:
+  # content: { template_id: 'first-template-id' }
 }
 
 simple_spark.transmissions.create(properties)

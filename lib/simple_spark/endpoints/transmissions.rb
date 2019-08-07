@@ -32,9 +32,12 @@ module SimpleSpark
       #       reply_to: 'Sales <sales@yourdomain.com>',
       #       headers: { 'X-Customer-CampaignID' => 'christmas_campaign' },
       #       text: 'Hi from {{sender}} ... this is a test, and here is your address {{address}}',
-      #       html: '<p>Hi from {{sender}}</p<p>This is a test</p>'
+      #       html: '<p>Hi from {{sender}}</p><p>This is a test</p>'
       #     }
       #   }
+      #
+      # Or to use a template, change the content key to be:
+      # content: { template_id: 'first-template-id' }
       def create(values, num_rcpt_errors = nil)
         query_params = num_rcpt_errors.nil? ? {} : { num_rcpt_errors: num_rcpt_errors }
         @client.call(method: :post, path: 'transmissions', body_values: values, query_values: query_params)
@@ -52,7 +55,7 @@ module SimpleSpark
         query_params[:template_id] = template_id if template_id
         @client.call(method: :get, path: 'transmissions', query_values: query_params)
       end
-      
+
       # Deletes all transmissions for a given campaign
       # @param campaign_id [String] specifies the campaign to delete transmissions for
       # @returns empty string
