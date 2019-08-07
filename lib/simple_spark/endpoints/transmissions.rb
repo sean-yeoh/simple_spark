@@ -18,7 +18,7 @@ module SimpleSpark
       #   properties = {
       #     options: { open_tracking: true, click_tracking: true },
       #     campaign_id: 'christmas_campaign',
-      #     return_path: 'bounces-christmas-campaign@sp.neekme.com',
+      #     return_path: 'bounces-christmas-campaign@sp.yourdomain.com',
       #     metadata: {user_type: 'students'},
       #     substitution_data: { sender: 'Big Store Team' },
       #     recipients:  [
@@ -36,8 +36,8 @@ module SimpleSpark
       #     }
       #   }
       #
-      # Or to use a template, change the content key to be:
-      # content: { template_id: 'first-template-id' }
+      #   Or to use a template, change the content key to be:
+      #   content: { template_id: 'first-template-id' }
       def create(values, num_rcpt_errors = nil)
         query_params = num_rcpt_errors.nil? ? {} : { num_rcpt_errors: num_rcpt_errors }
         @client.call(method: :post, path: 'transmissions', body_values: values, query_values: query_params)

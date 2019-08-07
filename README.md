@@ -2,13 +2,9 @@
 
 [![Build Status](https://travis-ci.org/leadmachineapp/simple_spark.png?branch=master)](https://travis-ci.org/leadmachineapp/simple_spark) [![Gem Version](https://badge.fury.io/rb/simple_spark.svg)](https://badge.fury.io/rb/simple_spark)
 
-## Update from SparkPost
+## What?
 
-Posted in the SparkPost Announcements channel on 17th May 2016
-
-> Due to incredible support and contributions from the community, we will be discontinuing support of the official SparkPost ruby client library as of May 17, 2016.
-
-As SparkPost have now stopped development on their own gem, and have recommended this one as being a better alternative, bumping version to 1.0.0 - the code has been running in production for a while now and seems stable and near feature complete.
+The simplest and cleanest way to access the SparkPost API from Ruby or from Rails.
 
 ## Installation
 
@@ -34,7 +30,7 @@ $ gem install simple_spark
 
 ### Why?
 
-The official gem was somewhat lacking in functionality, though with the demise of Mandrill it seems SparkPost decided to restart development on it, they have now abandoned that as of 17th May 2016
+The official gem was somewhat lacking in functionality, though with the demise of Mandrill it seems SparkPost decided to restart development on it, they abandoned that as of 17th May 2016
 
 As we would have to write wrappers around all the functions we would need for our app to use SparkPost anyway, it seemed much easier to write the wrapper as a gem and allow others to use it too.
 
@@ -298,7 +294,7 @@ Create a new Transmission
 properties = {
   options: { open_tracking: true, click_tracking: true },
   campaign_id: 'christmas_campaign',
-  return_path: 'bounces-christmas-campaign@sp.neekme.com',
+  return_path: 'bounces-christmas-campaign@sp.yourdomain.com',
   metadata: {user_type: 'students'},
   substitution_data: { sender: 'Big Store Team' },
   recipients:  [
@@ -902,6 +898,7 @@ simple_spark.recipient_lists.delete(your_list_id)
 
 ## Changelog
 
+### 1.0.10 / 1.0.11 Minor documentation updates
 
 ### 1.0.9
 
