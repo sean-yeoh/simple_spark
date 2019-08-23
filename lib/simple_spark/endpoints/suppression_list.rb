@@ -17,7 +17,7 @@ module SimpleSpark
       # @return [Array] a list of sample Suppression Status hash objects
       # @note See: https://developers.sparkpost.com/api/suppression-list#suppression-list-search-get
       def search(params = {})
-        @client.call(method: :get, path: 'suppression-list', query_params: params)
+        @client.call(method: :get, path: 'suppression-list', query_values: params)
       end
 
       # Insert or Update List Entries
