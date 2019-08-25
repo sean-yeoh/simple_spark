@@ -347,7 +347,6 @@ simple_spark.transmissions.delete_campaign("white-christmas")
 
 <a href="https://developers.sparkpost.com/api/#/reference/transmissions/create" target="_blank">see SparkPost API Documentation</a>
 
-
 ### Subaccounts
 
 #### List
@@ -394,7 +393,6 @@ simple_spark.subaccounts.update('mail.mydomain.com', properties)
 ```
 
 <a href="https://developers.sparkpost.com/api/#/reference/subaccounts/subaccounts-entity/edit-a-subaccount" target="_blank">see SparkPost API Documentation</a>
-
 
 ### Messsage Events
 
@@ -895,8 +893,9 @@ simple_spark.recipient_lists.delete(your_list_id)
 
 <a href="https://developers.sparkpost.com/api/recipient-lists/#recipient-lists-delete-delete-a-recipient-list" target="_blank">see SparkPost API Documentation</a>
 
-
 ## Changelog
+
+### 1.0.12 Fix param name on suppression list https://github.com/leadmachineapp/simple_spark/pull/27
 
 ### 1.0.10 / 1.0.11 Minor documentation updates
 
